@@ -1,0 +1,66 @@
+.home {
+  border-bottom: 1px solid rgb(56, 68, 77);
+}
+
+.home__header {
+  border-bottom: 1px solid rgb(56, 68, 77);
+  padding: 12px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.home__new-twit-area {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid rgb(56, 68, 77);
+}
+
+.home__new-twit-input {
+  margin-top: 7px;
+}
+
+.form-control-label {
+  width: 500px;
+  height: 60%;
+  color: white;
+  background-color: rgb(21, 32, 43);
+  font-size: 20px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}
+
+.form-control-label:focus {
+  color: white;
+  background-color: rgb(21, 32, 43);
+  font-size: 20px;
+  outline: none;
+  resize: none;
+  border: none;
+}
+
+.home__user-avatar {
+  margin-right: 10px;
+}
+
+.home__user-avatar img {
+  width: 49px;
+  border-radius: 9999px;
+}
+
+.home__new-twit-input-line {
+  height: 1px;
+  background-color: rgb(56, 68, 77);
+  width: 100%;
+}
+
+.home__new-twit-submit button {
+  float: right;
+  width: 74px;
+  height: 39px;
+  background-color: rgb(29, 161, 242);
+  border-radius: 9999px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

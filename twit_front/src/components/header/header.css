@@ -1,0 +1,98 @@
+.header {
+  margin-left: 18px;
+}
+
+.header__sidebar-twitter-logo {
+  margin-left: 16px;
+  margin-bottom: 5px;
+}
+
+.header__twitter-icon {
+  font-size: 28px;
+}
+
+.header__sidebar-menu-items {
+  margin-left: 10px;
+}
+
+.nav-link {
+  padding-left: 0;
+}
+
+.nav-item {
+  margin-top: 10px;
+}
+
+.nav-item i {
+  padding: 8px;
+  padding-bottom: 12px;
+  border-radius: 9999px;
+  font-style: inherit;
+  font-weight: bold;
+}
+
+.nav-link i {
+  font-size: 20px;
+}
+
+.nav-link i:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.header__sidebar i:hover {
+  color: rgba(29, 161, 242, 1);
+}
+
+i:active {
+  color: rgba(29, 161, 242, 1);
+}
+
+.header__btn-new-tweet {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header__btn-new-tweet button {
+  width: 229px;
+  height: 50px;
+  background-color: rgb(29, 161, 242);
+  border-radius: 9999px;
+}
+
+.header__user-profile {
+  width: 240px;
+  height: 60px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  border-radius: 9999px;
+}
+
+.header__user-profile:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.header__user-profile img {
+  border-radius: 9999px;
+  width: 39px;
+}
+
+.header__user-profile-username {
+  margin-top: -4px;
+  margin-right: 50px;
+}
+
+.header__user-profile-more {
+  margin-top: 5px;
+}
+
+.header__user-profile-username-name {
+  font-weight: bold;
+}
+
+.header__user-profile-username-login {
+  color: rgb(136, 153, 166);
+}

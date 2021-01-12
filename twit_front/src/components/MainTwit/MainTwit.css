@@ -1,0 +1,107 @@
+.main-twit__twit {
+  display: flex;
+  padding-top: 10px;
+  padding-left: 15px;
+  border-bottom: 1px solid rgb(56, 68, 77);
+}
+
+.main-twit__twit-avatar {
+  margin-right: 10px;
+}
+
+.main-twit__twit-avatar img {
+  width: 49px;
+  border-radius: 9999px;
+}
+
+.main-twit__twit-user-data-label-more {
+  margin-left: 275px;
+}
+
+.main-twit__twit-content {
+  max-width: 507px;
+}
+
+.main-twit__twit-user-data {
+  display: flex;
+}
+
+.main-twit__twit-user-data-label-name {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.main-twit__twit-user-data-label-second-data {
+  color: rgb(136, 153, 166);
+}
+
+.main-twit__twit-action-icons {
+  display: flex;
+  min-width: 425px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.main-twit__twit-icon {
+  display: flex;
+  margin-right: 100px;
+  font-size: 13px;
+}
+
+.main-twit__twit-icon-description {
+  margin-left: 5px;
+  margin-top: 1px;
+  color: rgb(136, 153, 166);
+}
+
+.main-twit__twit-icon i {
+  color: rgb(136, 153, 166);
+  padding-bottom: 5px;
+  padding-right: 7px;
+  padding-left: 8px;
+}
+
+/* hover */
+
+/* more */
+.main-twit__twit-user-data-label-more:hover i {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: rgba(29, 161, 242, 1);
+  border-radius: 9999px;
+}
+/* reply */
+.main-twit__twit-icon-reply:hover i {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: rgba(29, 161, 242, 1);
+  border-radius: 9999px;
+}
+.main-twit__twit-icon-reply:hover .main-twit__twit-icon-description-reply {
+  color: rgba(29, 161, 242, 1);
+  border-radius: 9999px;
+}
+/* repost */
+.main-twit__twit-icon-repost:hover i {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: rgb(23, 191, 99);
+  border-radius: 9999px;
+}
+.main-twit__twit-icon-repost:hover .main-twit__twit-icon-description-repost {
+  color: rgb(23, 191, 99);
+  border-radius: 9999px;
+}
+/* like */
+.main-twit__twit-icon-like:hover i {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: rgb(224, 36, 94);
+  border-radius: 9999px;
+}
+.main-twit__twit-icon-like:hover .main-twit__twit-icon-description-like {
+  color: rgb(224, 36, 94);
+  border-radius: 9999px;
+}
+/* share */
+.main-twit__twit-icon-share:hover i {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: rgba(29, 161, 242, 1);
+  border-radius: 9999px;
+}

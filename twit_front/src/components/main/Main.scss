@@ -1,0 +1,16 @@
+@import '../styles.scss';
+
+.home {
+  border-bottom: $borderLine;
+}
+
+.home__twits-line {
+  border-top: $borderLine;
+}
+
+.home__header {
+  border-bottom: $borderLine;
+  padding: 12px;
+  font-size: 19px;
+  font-weight: 800;
+}

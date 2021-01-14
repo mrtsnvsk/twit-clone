@@ -1,0 +1,71 @@
+@import '../styles.scss';
+
+.login-form {
+  margin-top: 7px;
+
+  .login-form__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .login-form__twitter-logo {
+      .login-form__twitter-logo-image {
+        font-size: 40px;
+      }
+    }
+
+    .login-form__auth-label {
+      font-size: 23px;
+      font-weight: 700;
+      padding: 30px 0 10px;
+    }
+
+    .login-form__authorization input {
+      padding-top: 6px;
+      width: 538px;
+      height: 56px;
+      padding-left: 10px;
+      font-size: 19px;
+      border-radius: 4px;
+      background-color: #15202b;
+      border: 1px solid rgb(61, 84, 102);
+    }
+
+    .login-form__add-data {
+      padding: 10px 15px;
+
+      .login-form__-input:focus {
+        border: 1px solid $blueColorActive;
+        outline: none;
+      }
+    }
+
+    .login-form__add-data label {
+      position: absolute;
+      margin-left: 10px;
+      font-size: 12px;
+      color: rgb(27, 149, 224);
+    }
+
+    .login-form__add-data button {
+      width: 538px;
+      height: 47px;
+      border-radius: $borderRadiusMax;
+    }
+
+    .login-form__help-labels {
+      padding-top: 20px;
+    }
+
+    .login-form__help-labels label {
+      text-decoration: none;
+      margin-right: 3px;
+      margin-left: 3px;
+      color: rgb(27, 149, 224);
+      font-size: 15px;
+    }
+  }
+}
+
+.login-form:focus {
+  outline: none;
+}

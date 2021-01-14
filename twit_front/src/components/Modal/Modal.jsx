@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
-import './Modal.css';
+import React from 'react';
+import NewTwitArea from '../NewTwitArea';
+import './Modal.scss';
 
-const Modal = () => {
+const Modal = ({ active, setActive }) => {
   return (
     <div
-    // onClick={() => setActive(false)}
-    // className={active ? 'modal--window active' : 'modal--window'}
+      hidden={active}
+      className='modal--window'
+      onClick={() => setActive(true)}
     >
       <div
         className='modal--window__content'
         onClick={(e) => e.stopPropagation()}
-      ></div>
+      >
+        <NewTwitArea />
+      </div>
     </div>
   );
 };
 
 export default Modal;
-
-// props
-// { active, setActive }
-// import Modal from '../Modal';
-// const [modalActive, setModalActive] = useState(true);
-// <Modal active={modalActive} setActive={setModalActive} />

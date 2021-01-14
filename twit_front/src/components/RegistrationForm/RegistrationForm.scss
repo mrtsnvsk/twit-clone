@@ -1,0 +1,34 @@
+@import '../styles.scss';
+
+.registration-form {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  z-index: 99;
+  .registration-form__container {
+    border-radius: 12px;
+    background-color: rgb(21, 32, 43);
+    width: 800px;
+    height: 600px;
+
+    .registration-form__close-icon {
+      float: right;
+      padding-right: 15px;
+    }
+    .registration-form__close-icon i {
+      font-size: 30px;
+    }
+    .registration-form__close-icon i:hover {
+      font-size: 30px;
+      font-weight: bolder;
+      color: red;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './MainTwit.css';
+import './MainTwit.scss';
 
 const MainTwit = () => {
   return (

@@ -1,0 +1,20 @@
+.modal--window {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 150px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  z-index: 99;
+
+  .modal--window__content {
+    border-radius: 12px;
+    background-color: rgb(21, 32, 43);
+    height: 166px;
+    margin-right: 106px;
+  }
+}

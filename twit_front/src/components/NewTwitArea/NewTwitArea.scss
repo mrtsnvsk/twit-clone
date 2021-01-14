@@ -1,0 +1,49 @@
+@import '../styles.scss';
+
+.new-twit-area {
+  display: flex;
+  padding: 15px;
+  .new-twit-area__user-avatar {
+    margin-right: 10px;
+  }
+  .new-twit-area__user-avatar img {
+    width: 49px;
+    border-radius: $borderRadiusMax;
+  }
+  .new-twit-area__new-twit-input {
+    margin-top: 7px;
+
+    .new-twit-area__new-twit-label {
+      width: 500px;
+      height: 60%;
+      color: white;
+      background-color: $globalColor;
+      font-size: 20px;
+      border: none;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+    }
+    .new-twit-area__new-twit-label:focus {
+      color: white;
+      background-color: $globalColor;
+      font-size: 20px;
+      outline: none;
+      resize: none;
+      border: none;
+    }
+    .new-twit-area__new-twit-input-line {
+      border-bottom: $borderLine;
+    }
+
+    .new-twit-area__new-twit-submit button {
+      float: right;
+      width: 74px;
+      height: 39px;
+      background-color: $blueColorActive;
+      border-radius: $borderRadiusMax;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

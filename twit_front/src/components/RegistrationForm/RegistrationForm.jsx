@@ -16,12 +16,15 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
   };
 
   const onHandlerRegister = (e) => {
+    const form = e.target;
     e.preventDefault();
     registerUser({ ...regData });
+    form.reset();
   };
 
   return (
-    <div
+    <form
+      onSubmit={onHandlerRegister}
       className='registration-form'
       hidden={active}
       onClick={() => setActive(true)}
@@ -71,7 +74,6 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
                 className='login-form__-input'
                 placeholder='Адрес электронной почты'
                 required={true}
-                autoComplete='off'
               />
             </div>
             <div className='login-form__add-data'>
@@ -87,18 +89,14 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
               />
             </div>
             <div className='login-form__add-data'>
-              <button
-                type='button'
-                onClick={onHandlerRegister}
-                className='btn btn-primary'
-              >
+              <button type='submit' className='btn btn-primary'>
                 Регистрация
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

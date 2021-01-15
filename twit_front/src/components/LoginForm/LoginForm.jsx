@@ -37,8 +37,10 @@ const LoginForm = ({ loginUser }) => {
             <input
               onChange={onHandlerChange}
               name='login'
+              type='text'
               className='login-form__-input'
               placeholder='Адрес электронной почты или email'
+              // autoComplete='off'
             />
           </div>
           <div className='login-form__add-data'>
@@ -46,8 +48,10 @@ const LoginForm = ({ loginUser }) => {
             <input
               onChange={onHandlerChange}
               name='password'
+              type='password'
               className='login-form__-input'
               placeholder='Пароль'
+              autoComplete='off'
             />
           </div>
           <div className='login-form__add-data'>

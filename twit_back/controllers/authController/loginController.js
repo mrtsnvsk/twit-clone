@@ -38,9 +38,11 @@ const loginController = async (req, res) => {
       {
         email: curUser.email,
         login: curUser.login,
+        name: curUser.name,
         id: curUser._id,
         regDate: curUser.registrationDate,
         avatar: curUser.avatar,
+        twits: curUser.twits,
       },
       config.get('jwtSecretKey'),
       {

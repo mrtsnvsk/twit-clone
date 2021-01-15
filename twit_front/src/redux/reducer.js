@@ -9,6 +9,13 @@ const reducer = (state = initialState, action) => {
         currentUser: action.payload,
         isAuth: true,
       };
+    case constant.LOG_OUT:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        currentUser: {},
+        isAuth: false,
+      };
     default:
       return state;
   }

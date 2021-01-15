@@ -21,3 +21,9 @@ export const loginUser = (data) => {
     });
   };
 };
+
+export const logoutUser = () => {
+  return {
+    type: constant.LOG_OUT,
+  };
+};

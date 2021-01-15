@@ -1,0 +1,66 @@
+@import '../styles.scss';
+
+.header-bot-popup {
+  position: absolute;
+  bottom: 80px;
+  left: 294px;
+  width: 300px;
+  height: 150px;
+  border-radius: 12px;
+  border: 2px solid $blueColorHover;
+  background-color: $globalColor;
+  padding-top: 20px;
+
+  .header-bot-popup__container {
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+
+    .header-bot-popup-user-avatar {
+      margin-left: 20px;
+    }
+
+    .header-bot-popup-user-avatar img {
+      border-radius: $borderRadiusMax;
+      width: 39px;
+    }
+
+    .header-bot-popup-username {
+      margin-top: -4px;
+      margin-right: 72px;
+
+      .header-bot-popup-username-name {
+        font-weight: bold;
+      }
+
+      .header-bot-popup-username-login {
+        color: rgb(136, 153, 166);
+      }
+    }
+    .header-bot-popup-more {
+      margin-top: 5px;
+      margin-right: 20px;
+    }
+
+    .header-bot-popup-more i {
+      font-size: 22px;
+      color: $blueColorActive;
+    }
+  }
+  .header-bot-popup__bottom-line {
+    width: 100%;
+    border-bottom: $borderLine;
+    margin-top: 20px;
+  }
+
+  .header-bot-popup__exit-label {
+    padding-top: 17px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .header-bot-popup__exit-label:hover {
+    background-color: $blueColorHover;
+  }
+}

@@ -13,8 +13,6 @@ const Main = () => {
         <NewTwitArea />
         <div className='home__twits-line'>
           <MainTwit />
-          <MainTwit />
-          <MainTwit />
         </div>
       </div>
     </div>

@@ -29,6 +29,13 @@
       background-color: #15202b;
       border: 1px solid rgb(61, 84, 102);
     }
+    .login-form__authorization input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px $globalColor inset !important;
+      -webkit-text-fill-color: white !important;
+    }
 
     .login-form__add-data {
       padding: 10px 15px;

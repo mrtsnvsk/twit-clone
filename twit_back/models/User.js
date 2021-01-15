@@ -19,8 +19,8 @@ const schema = new Schema({
     default: '',
   },
   twits: {
-    type: Object,
-    default: {},
+    type: Array,
+    default: [],
   },
   registrationDate: { type: Date, default: Date.now },
 });

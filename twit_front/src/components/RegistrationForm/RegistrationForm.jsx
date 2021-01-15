@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import * as action from '../../redux/actions/authAction';
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ active, setActive }) => {
+const RegistrationForm = ({ active, setActive, registerUser }) => {
+  const [regData, setRegData] = useState({
+    name: '',
+    login: '',
+    email: '',
+    password: '',
+  });
+
+  const onHandlerChange = (e) => {
+    setRegData({ ...regData, [e.target.name]: e.target.value });
+  };
+
+  const onHandlerRegister = (e) => {
+    e.preventDefault();
+    registerUser({ ...regData });
+  };
+
   return (
     <div
       className='registration-form'
@@ -25,25 +43,55 @@ const RegistrationForm = ({ active, setActive }) => {
           <div className='login-form__authorization'>
             <div className='login-form__add-data'>
               <label>Имя</label>
-              <input className='login-form__-input' placeholder='Имя' />
+              <input
+                onChange={onHandlerChange}
+                name='name'
+                className='login-form__-input'
+                placeholder='Имя'
+                required={true}
+                autoComplete='off'
+              />
             </div>
             <div className='login-form__add-data'>
               <label>Логин</label>
-              <input className='login-form__-input' placeholder='Логин' />
+              <input
+                onChange={onHandlerChange}
+                name='login'
+                className='login-form__-input'
+                placeholder='Логин'
+                required={true}
+                autoComplete='off'
+              />
             </div>
             <div className='login-form__add-data'>
               <label>Адрес электронной почты</label>
               <input
+                onChange={onHandlerChange}
+                name='email'
                 className='login-form__-input'
                 placeholder='Адрес электронной почты'
+                required={true}
+                autoComplete='off'
               />
             </div>
             <div className='login-form__add-data'>
               <label>Пароль</label>
-              <input className='login-form__-input' placeholder='Пароль' />
+              <input
+                onChange={onHandlerChange}
+                name='password'
+                type='password'
+                className='login-form__-input'
+                placeholder='Пароль'
+                required={true}
+                autoComplete='off'
+              />
             </div>
             <div className='login-form__add-data'>
-              <button type='submit' className='btn btn-primary'>
+              <button
+                type='button'
+                onClick={onHandlerRegister}
+                className='btn btn-primary'
+              >
                 Регистрация
               </button>
             </div>
@@ -54,4 +102,10 @@ const RegistrationForm = ({ active, setActive }) => {
   );
 };
 
-export default RegistrationForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    registerUser: (data) => dispatch(action.registerUser(data)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(RegistrationForm);

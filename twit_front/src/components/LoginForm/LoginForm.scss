@@ -40,10 +40,14 @@
     }
 
     .login-form__add-data label {
+      display: none;
       position: absolute;
       margin-left: 10px;
       font-size: 12px;
       color: rgb(27, 149, 224);
+    }
+    .login-form__add-data:focus-within label {
+      display: block;
     }
 
     .login-form__add-data button {

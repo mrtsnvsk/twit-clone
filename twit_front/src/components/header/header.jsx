@@ -12,7 +12,8 @@ const Header = () => {
     }
   };
   return (
-    <>
+    <div className='app__header'>
+
       <Modal active={modalActive} setActive={setModalActive} />
       <div className='header' onKeyDown={onHandleKeyPress} tabIndex='0'>
         <div className='header__sidebar'>
@@ -72,7 +73,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

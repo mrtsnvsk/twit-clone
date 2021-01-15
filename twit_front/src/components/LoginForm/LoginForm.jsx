@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import RegistrationForm from '../RegistrationForm';
+import { connect } from 'react-redux';
+import * as action from '../../redux/actions/authAction';
 import './LoginForm.scss';
 
-const LoginForm = () => {
+const LoginForm = ({ loginUser }) => {
   const [modalActive, setModalActive] = useState(true);
+  const [loginData, setLoginData] = useState({ login: '', password: '' });
+
+  const onHandlerChange = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+
+  const onHandlerLogin = (e) => {
+    e.preventDefault();
+    loginUser(loginData);
+  };
 
   const onHandleKeyPress = (e) => {
     if (e.keyCode === 27) {
@@ -19,24 +31,31 @@ const LoginForm = () => {
           <i className='bi bi-twitter login-form__twitter-logo-image'></i>
         </div>
         <div className='login-form__auth-label'>Войти в твиттер</div>
-        <div className='login-form__authorization'>
+        <form onSubmit={onHandlerLogin} className='login-form__authorization'>
           <div className='login-form__add-data'>
             <label>Адрес электронной почты</label>
             <input
+              onChange={onHandlerChange}
+              name='login'
               className='login-form__-input'
-              placeholder='Адрес электронной почты'
+              placeholder='Адрес электронной почты или email'
             />
           </div>
           <div className='login-form__add-data'>
             <label>Пароль</label>
-            <input className='login-form__-input' placeholder='Пароль' />
+            <input
+              onChange={onHandlerChange}
+              name='password'
+              className='login-form__-input'
+              placeholder='Пароль'
+            />
           </div>
           <div className='login-form__add-data'>
             <button type='submit' className='btn btn-primary'>
               Войти
             </button>
           </div>
-        </div>
+        </form>
         <div className='login-form__help-labels'>
           <label type='button'>Забыли пароль?</label>
           <span>
@@ -51,4 +70,10 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (data) => dispatch(action.loginUser(data)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);

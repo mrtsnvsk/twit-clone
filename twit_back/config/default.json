@@ -1,4 +1,5 @@
 {
   "port": 8080,
-  "mongoUrl": "mongodb+srv://twitter:twitter123@cluster0.zqtlc.mongodb.net/data-base?retryWrites=true&w=majority"
+  "mongoUrl": "mongodb+srv://twitter:twitter123@cluster0.zqtlc.mongodb.net/data-base?retryWrites=true&w=majority",
+  "jwtSecretKey": "mikitka"
 }

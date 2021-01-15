@@ -3,9 +3,11 @@ import initialState from './initialState';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 1:
+    case constant.LOGIN_USER:
       return {
-        state,
+        ...state,
+        currentUser: action.payload,
+        isAuth: true,
       };
     default:
       return state;

@@ -1,7 +1,6 @@
 const initialState = {
-  data: {
-    info: 'ldasaasdasd'
-  }
-}
+  currentUser: {},
+  isAuth: null,
+};
 
 export default initialState;

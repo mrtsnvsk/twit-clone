@@ -1,5 +1,10 @@
 @import '../styles.scss';
 
+.app__sidebar {
+  width: 400px;
+  margin: 0 auto;
+}
+
 .sidebar {
   .sidebar__content {
     margin-top: 10px;
@@ -20,22 +25,15 @@
         color: rgb(136, 153, 166);
       }
     }
-    .sidebar__search input:focus .sidebar__search-logo i {
+
+    .sidebar__search:focus-within {
       border: 1px solid $blueColorActive;
+    }
+
+    .sidebar__search:focus-within i {
       color: $blueColorActive;
     }
 
-    // .sidebar__search:focus {
-    //   border: 1px solid $blueColorActive;
-    // }
-    // .sidebar__search-active .sidebar__search-logo i {
-    //   color: $blueColorActive;
-    // }
-
-    // .sidebar__search input:focus .sidebar__search {
-    //   border: 1px solid $blueColorActive;
-    //   color: $blueColorActive;
-    // }
     .sidebar__search-input input {
       width: 260px;
       background-color: rgb(136, 153, 166);

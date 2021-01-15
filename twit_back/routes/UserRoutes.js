@@ -1,13 +1,12 @@
 const { Router } = require('express');
-// const User = require('../models/User');
 const router = Router();
+const registrationController = require('../controllers/authController/registerController');
+const loginController = require('../controllers/authController/loginController');
 
-router.post('/newTwit', async (req, res) => {
-  try {
-    console.log('req.body', req.body);
-  } catch {
-    res.send({ message: 'Ошибка при создании нового твита' });
-  }
-});
+// http://localhost:8080/api/registration
+router.post('/registration', registrationController);
+
+// http://localhost:8080/api/login
+router.post('/login', loginController);
 
 module.exports = router;

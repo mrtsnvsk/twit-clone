@@ -4,8 +4,9 @@ import './MainTwit.scss';
 const MainTwit = () => {
   return (
     <div className='main-twit__twit'>
-      <div type='button' className='main-twit__twit-avatar'>
+      <div className='main-twit__twit-avatar'>
         <img
+          type='button'
           src='https://pbs.twimg.com/profile_images/1162986608515256322/EB8R-04B_400x400.jpg'
           alt='user logo'
         />

@@ -16,13 +16,13 @@ const schema = new Schema({
   },
   avatar: {
     type: String,
+    default: '',
   },
   twits: {
     type: Object,
+    default: {},
   },
-  registationData: { type: Date, default: Date.now },
+  registrationDate: { type: Date, default: Date.now },
 });
 
 module.exports = model('User', schema);
-
-

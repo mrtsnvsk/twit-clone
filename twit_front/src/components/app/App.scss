@@ -10,22 +10,8 @@ body {
   .app {
     max-width: 1400px;
     width: 100%;
-    margin: 0 auto;
-    .app__container {
-      display: flex;
-      margin-left: 100px;
-      .app__header {
-        width: 263px;
-      }
-
-      .app__main {
-        width: 600px;
-        border: 1px solid rgb(56, 68, 77);
-      }
-      .app__sidebar {
-        width: 400px;
-        margin: 0 auto;
-      }
-    }
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
   }
 }

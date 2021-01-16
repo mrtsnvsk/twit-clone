@@ -6,6 +6,7 @@ const schema = new Schema({
   },
   login: {
     type: String,
+    unique: true,
   },
   email: {
     type: String,

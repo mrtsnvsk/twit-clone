@@ -1,12 +1,8 @@
 @import '../styles.scss';
 
-.app__main {
-  width: 600px;
-  border: 1px solid rgb(56, 68, 77);
-}
-
 .home {
   border-bottom: $borderLine;
+  height: 100vh;
 }
 
 .home__twits-line {

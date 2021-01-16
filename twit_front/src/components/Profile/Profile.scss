@@ -1,0 +1,39 @@
+@import '../styles.scss';
+
+.profile {
+  border-bottom: $borderLine;
+  height: 100vh;
+
+  .profile__header {
+    border-bottom: $borderLine;
+    padding: 12px;
+    font-size: 19px;
+    font-weight: 800;
+
+    .profile__back-icon {
+      padding-left: 10px;
+      padding-right: 25px;
+      margin-top: 8px;
+    }
+
+    .profile__back-icon i {
+      color: $blueColorActive;
+      padding: 10px;
+      padding-top: 3px;
+    }
+
+    .profile__back-icon i:hover {
+      background-color: $blueColorHover;
+      border-radius: $borderRadiusMax;
+      cursor: pointer;
+    }
+
+    .profile__header-label {
+      .profile__header-label-count {
+        font-size: 13px;
+        color: rgb(136, 153, 166);
+        font-weight: 400;
+      }
+    }
+  }
+}

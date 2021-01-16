@@ -75,7 +75,7 @@ const Header = ({ currentUser }) => {
           </div>
           <div className='header__user-profile-username'>
             <div className='header__user-profile-username-name'>{name}</div>
-            <div className='header__user-profile-username-login'>{login}</div>
+            <div className='header__user-profile-username-login'>{`@${login}`}</div>
           </div>
           <div className='header__user-profile-more'>
             <i className='bi bi-three-dots'></i>

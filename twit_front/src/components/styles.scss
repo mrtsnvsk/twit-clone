@@ -3,3 +3,18 @@ $blueColorActive: rgb(29, 161, 242);
 $borderRadiusMax: 9999px;
 $globalColor: rgb(21, 32, 43);
 $borderLine: 1px solid rgb(56, 68, 77);
+
+.app__header {
+  margin-left: 50px;
+  width: 263px;
+}
+
+.app__main {
+  width: 600px;
+  border: 1px solid rgb(56, 68, 77);
+}
+
+.app__sidebar {
+  width: 400px;
+  margin: 0 auto;
+}

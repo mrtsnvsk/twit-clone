@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case constant.LOGIN_USER:
+    case constant.AUTH_USER:
       return {
         ...state,
         currentUser: action.payload,
@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: {},
-        isAuth: false,
+        isAuth: null,
       };
     default:
       return state;

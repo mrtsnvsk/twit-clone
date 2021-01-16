@@ -1,12 +1,16 @@
 const { Router } = require('express');
 const router = Router();
-const registrationController = require('../controllers/authController/registerController');
-const loginController = require('../controllers/authController/loginController');
+const registration = require('../controllers/authController/registerController');
+const login = require('../controllers/authController/loginController');
+const uploadAvatar = require('../controllers/uploadAvatarController');
 
 // http://localhost:8080/api/registration
-router.post('/registration', registrationController);
+router.post('/registration', registration);
 
 // http://localhost:8080/api/login
-router.post('/login', loginController);
+router.post('/login', login);
+
+// http://localhost:8080/api/uploadAvatar
+router.post('/uploadAvatar', uploadAvatar);
 
 module.exports = router;

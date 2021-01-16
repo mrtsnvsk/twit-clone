@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const config = require('config');
+const fileMiddleware = require('./middleware/file');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -20,8 +23,10 @@ const start = async () => {
 
       next();
     });
-
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use('/api', require('./routes/UserRoutes'));
+    app.use('/static', express.static('images'));
+    app.use(fileMiddleware.single('avatar'));
 
     await mongoose.connect(config.get('mongoUrl'), {
       useNewUrlParser: true,

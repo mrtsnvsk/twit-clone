@@ -50,6 +50,8 @@ const loginController = async (req, res) => {
       }
     );
 
+    console.log('token', token);
+
     return res.json({
       token,
     });

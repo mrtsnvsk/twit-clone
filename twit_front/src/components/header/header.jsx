@@ -15,6 +15,7 @@ const Header = ({ currentUser }) => {
       setModalActive(true);
     }
   };
+
   return (
     <div className='app__header'>
       <Modal active={modalActive} setActive={setModalActive} />

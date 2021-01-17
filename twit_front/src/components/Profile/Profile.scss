@@ -36,4 +36,91 @@
       }
     }
   }
+
+  .profile__user-data-bg-image {
+    width: 598px;
+    height: 199px;
+    .profile__user-data-edit {
+      position: absolute;
+      z-index: 3;
+      padding: 15px;
+      padding-top: 118px;
+      cursor: pointer;
+    }
+
+    .profile__user-data-edit img {
+      width: 134px;
+      height: 134px;
+      border-radius: $borderRadiusMax;
+    }
+  }
+  .profile__user-data-info {
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: $borderLine;
+
+    .profile__user-data-info-edit-button {
+      margin-bottom: 15px;
+    }
+
+    .profile__user-data-info-edit-button button {
+      width: 110px;
+      height: 40px;
+      border-radius: $borderRadiusMax;
+      border: 1px solid $blueColorActive;
+      background-color: $globalColor;
+      color: $blueColorActive;
+    }
+
+    .profile__user-data-info-edit-button button:hover {
+      border: 1px solid $blueColorActive;
+      background-color: $blueColorHover;
+      color: $blueColorActive;
+    }
+
+    .profile__user-data-name {
+      font-size: 19px;
+      font-weight: 800;
+    }
+    .profile__user-data-login {
+      margin-bottom: 5px;
+      font-size: 15px;
+      color: rgb(136, 153, 166);
+    }
+
+    .profile__user-data-info-label {
+      margin-top: 3px;
+      .profile__user-data-info-icons {
+        font-size: 15px;
+        color: rgb(136, 153, 166);
+
+        margin-right: 10px;
+      }
+
+      .profile__user-data-info-icons i {
+        color: rgb(136, 153, 166);
+        margin-right: 10px;
+      }
+    }
+
+    .profile__user-data-info-follow-text {
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      .profile__user-data-info-follow-text-label {
+        margin-right: 10px;
+        font-size: 15px;
+        color: rgb(136, 153, 166);
+        cursor: pointer;
+      }
+      .profile__user-data-info-follow-text-label span {
+        margin-right: 2px;
+        font-weight: 700;
+      }
+      .profile__user-data-info-follow-text-label:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

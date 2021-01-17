@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 import './App.scss';
 import Profile from '../Profile/Profile';
 
-const App = ({ isAuth, checkAuthUser }) => {
+const App = ({ isAuth, checkAuthUser, currentUser }) => {
   useEffect(() => {
-    checkAuthUser();
-  }, [checkAuthUser]);
+    if (localStorage.getItem('token')) checkAuthUser();
+  }, [checkAuthUser, currentUser.length]);
 
   return (
     <>
@@ -21,8 +21,7 @@ const App = ({ isAuth, checkAuthUser }) => {
           exact
           path={['/', '/home', '/profile', '/notifications', '/messages']}
         >
-          <Redirect from='/' to='/profile' />
-
+          <Redirect from='/' to='/home' />
           <div className='app'>
             <Header />
             <Switch>
@@ -48,6 +47,7 @@ const App = ({ isAuth, checkAuthUser }) => {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.isAuth,
+    currentUser: state.currentUser,
   };
 };
 const mapDispatchToProps = (dispatch) => {

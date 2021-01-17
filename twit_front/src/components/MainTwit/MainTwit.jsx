@@ -7,7 +7,7 @@ const MainTwit = ({ currentUser, isAuth }) => {
 
   let twit = [];
   if (isAuth) {
-    twit = currentUser.twits.map((el, idx) => {
+    twit = currentUser.twits.reverse().map((el, idx) => {
       return (
         <div key={idx} className='main-twit__twit'>
           <div className='main-twit__twit-avatar'>
@@ -42,7 +42,7 @@ const MainTwit = ({ currentUser, isAuth }) => {
               </div>
             </div>
             <div>{el.text}</div>
-            <div className='main-twit__twit-action-icons'>
+            {/* <div className='main-twit__twit-action-icons'>
               <div
                 type='button'
                 className='main-twit__twit-icon main-twit__twit-icon-reply'
@@ -76,7 +76,7 @@ const MainTwit = ({ currentUser, isAuth }) => {
               >
                 <i className='bi bi-upload'></i>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       );
@@ -94,3 +94,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(MainTwit);
+
+// export default MainTwit;

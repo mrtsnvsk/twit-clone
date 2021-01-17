@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import * as action from '../../redux/actions/twitterAction';
 import './NewTwitArea.scss';
-import axios from 'axios';
 
-const NewTwitArea = () => {
-  const [newTwit, setNewTwit] = useState();
+const NewTwitArea = ({ currentUser, addNewTweet }) => {
+  const [newTweet, setNewTweet] = useState();
 
   const sentData = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/api/newTwit', { twit: newTwit });
+    addNewTweet(currentUser.id, { text: newTweet });
     e.target.reset();
   };
 
@@ -24,7 +25,7 @@ const NewTwitArea = () => {
           </div>
           <div className='form-floating new-twit-area__new-twit-input'>
             <textarea
-              onChange={(e) => setNewTwit(e.target.value)}
+              onChange={(e) => setNewTweet(e.target.value)}
               required={true}
               placeholder='Что нового?'
               className='form-control-label new-twit-area__new-twit-label'
@@ -42,4 +43,16 @@ const NewTwitArea = () => {
   );
 };
 
-export default NewTwitArea;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewTweet: (id, tweet) => dispatch(action.addNewTweet(id, tweet)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTwitArea);

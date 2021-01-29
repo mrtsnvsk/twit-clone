@@ -42,12 +42,9 @@ const loginController = async (req, res) => {
         id: curUser._id,
         regDate: curUser.registrationDate,
         avatar: curUser.avatar,
-        twits: curUser.twits,
+        tweets: curUser.tweets,
       },
-      config.get('jwtSecretKey'),
-      {
-        expiresIn: '24h',
-      }
+      config.get('jwtSecretKey')
     );
 
     return res.json({

@@ -70,7 +70,7 @@ const Header = ({ currentUser }) => {
         >
           <div className='header__user-profile-user-avatar'>
             <img
-              src='https://pbs.twimg.com/profile_images/1162986608515256322/EB8R-04B_400x400.jpg'
+              src={`http://localhost:8080/static/${currentUser.avatar}`}
               alt='user logo'
             />
           </div>

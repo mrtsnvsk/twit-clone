@@ -3,12 +3,23 @@ import { connect } from 'react-redux';
 import * as action from '../../redux/actions/twitterAction';
 import './NewTwitArea.scss';
 
-const NewTwitArea = ({ currentUser, addNewTweet }) => {
+const NewTwitArea = ({ currentUser, addNewTweet, isActive }) => {
   const [newTweet, setNewTweet] = useState();
 
   const sentData = (e) => {
     e.preventDefault();
-    addNewTweet(currentUser.id, { text: newTweet });
+    addNewTweet(currentUser.id, {
+      text: newTweet,
+      likes: [],
+      reposts: [],
+      replyes: [],
+      createDate: new Date(),
+      tweetId: Date.now(),
+      login: currentUser.login,
+      name: currentUser.name,
+      avatar: currentUser.avatar,
+      userId: currentUser.id,
+    });
     e.target.reset();
   };
 
@@ -19,7 +30,7 @@ const NewTwitArea = ({ currentUser, addNewTweet }) => {
         <div className='new-twit-area'>
           <div className='new-twit-area__user-avatar'>
             <img
-              src='https://pbs.twimg.com/profile_images/1162986608515256322/EB8R-04B_400x400.jpg'
+              src={`http://localhost:8080/static/${currentUser.avatar}`}
               alt='user logo'
             />
           </div>

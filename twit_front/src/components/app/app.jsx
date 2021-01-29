@@ -4,15 +4,17 @@ import Main from '../Main';
 import Sidebar from '../Sidebar';
 import LoginForm from '../LoginForm';
 import * as action from '../../redux/actions/authAction';
+import * as tweetAction from '../../redux/actions/twitterAction';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.scss';
 import Profile from '../Profile/Profile';
 
-const App = ({ isAuth, checkAuthUser, currentUser }) => {
+const App = ({ isAuth, checkAuthUser, getAllTweets, allTweets }) => {
   useEffect(() => {
+    getAllTweets();
     if (localStorage.getItem('token')) checkAuthUser();
-  }, [checkAuthUser, currentUser.length]);
+  }, [checkAuthUser, getAllTweets, allTweets.length]);
 
   return (
     <>
@@ -48,11 +50,13 @@ const mapStateToProps = (state) => {
   return {
     isAuth: state.isAuth,
     currentUser: state.currentUser,
+    allTweets: state.allTweets,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     checkAuthUser: () => dispatch(action.checkAuthUser()),
+    getAllTweets: () => dispatch(tweetAction.getAllTweets()),
   };
 };
 

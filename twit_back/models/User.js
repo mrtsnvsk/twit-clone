@@ -17,9 +17,17 @@ const schema = new Schema({
   },
   avatar: {
     type: String,
-    default: '',
+    default: 'default-avatar.png',
   },
-  twits: {
+  following: {
+    type: Array,
+    default: [],
+  },
+  followers: {
+    type: Array,
+    default: [],
+  },
+  tweets: {
     type: Array,
     default: [],
   },

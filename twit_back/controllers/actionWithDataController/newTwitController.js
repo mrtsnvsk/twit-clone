@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -6,7 +6,10 @@ const newTwitController = async (req, res) => {
   try {
     const { id, newTwit } = req.body;
     const findUser = await User.findOne({ _id: id });
-    await User.updateOne({ _id: id }, { twits: [...findUser.twits, newTwit] });
+    await User.updateOne(
+      { _id: id },
+      { tweets: [...findUser.tweets, newTwit] }
+    );
     const newUser = await User.findOne({ _id: id });
 
     const token = jwt.sign(
@@ -17,12 +20,9 @@ const newTwitController = async (req, res) => {
         id: newUser._id,
         regDate: newUser.registrationDate,
         avatar: newUser.avatar,
-        twits: newUser.twits,
+        tweets: newUser.tweets,
       },
-      config.get('jwtSecretKey'),
-      {
-        expiresIn: '24h',
-      }
+      config.get('jwtSecretKey')
     );
 
     res.json({

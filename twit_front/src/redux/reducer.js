@@ -16,6 +16,11 @@ const reducer = (state = initialState, action) => {
         currentUser: {},
         isAuth: null,
       };
+    case constant.GET_ALL_TWEETS:
+      return {
+        ...state,
+        allTweets: action.payload,
+      };
     default:
       return state;
   }

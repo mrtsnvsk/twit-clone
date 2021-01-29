@@ -14,12 +14,9 @@ const checkAuthController = async (req, res) => {
         id: newUser._id,
         regDate: newUser.registrationDate,
         avatar: newUser.avatar,
-        twits: newUser.twits,
+        tweets: newUser.tweets,
       },
-      config.get('jwtSecretKey'),
-      {
-        expiresIn: '24h',
-      }
+      config.get('jwtSecretKey')
     );
 
     return res.json({

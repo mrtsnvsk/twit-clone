@@ -2,7 +2,7 @@
 
 .profile {
   border-bottom: $borderLine;
-  height: 100vh;
+  height: 100%;
 
   .profile__header {
     border-bottom: $borderLine;
@@ -123,4 +123,8 @@
       }
     }
   }
+}
+
+.profile:focus {
+  outline: none;
 }

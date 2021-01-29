@@ -16,19 +16,17 @@
 
 .main-twit__twit-avatar img {
   width: 49px;
+  height: 49px;
   border-radius: $borderRadiusMax;
 }
 
 .main-twit__twit-user-data-label-more {
-  margin-left: 275px;
+  padding-right: 15px;
 }
 
 .main-twit__twit-content {
   max-width: 507px;
-}
-
-.main-twit__twit-user-data {
-  display: flex;
+  width: 100%;
 }
 
 .main-twit__twit-user-data-label-name {
@@ -43,7 +41,7 @@
 .main-twit__twit-action-icons {
   display: flex;
   justify-content: space-between;
-  min-width: 425px;
+  width: 425px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -68,10 +66,10 @@
 
 /* hover */
 
-/* more */
+/* delete */
 .main-twit__twit-user-data-label-more:hover i {
   background-color: $blueColorHover;
-  color: $blueColorActive;
+  color: red;
   border-radius: $borderRadiusMax;
 }
 /* reply */
@@ -99,6 +97,10 @@
   background-color: $blueColorHover;
   color: rgb(224, 36, 94);
   border-radius: $borderRadiusMax;
+}
+
+.main-twit__twit-icon-like-active i {
+  color: rgb(224, 36, 94);
 }
 .main-twit__twit-icon-like:hover .main-twit__twit-icon-description-like {
   color: rgb(224, 36, 94);

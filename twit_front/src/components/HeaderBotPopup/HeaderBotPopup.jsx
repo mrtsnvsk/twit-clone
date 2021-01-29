@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import * as action from '../../redux/actions/authAction';
 import './HeaderBotPopup.scss';
 
-const HeaderBotPopup = ({ logoutUser, login, name }) => {
+const HeaderBotPopup = ({ logoutUser, login, name, currentUser }) => {
   return (
     <div className='header-bot-popup'>
       <div className='header-bot-popup__container'>
         <div className='header-bot-popup-user-avatar'>
           <img
-            src='https://pbs.twimg.com/profile_images/1162986608515256322/EB8R-04B_400x400.jpg'
+            src={`http://localhost:8080/static/${currentUser.avatar}`}
             alt='user logo'
           />
         </div>
@@ -23,10 +23,16 @@ const HeaderBotPopup = ({ logoutUser, login, name }) => {
       </div>
       <div className='header-bot-popup__bottom-line'></div>
       <div onClick={logoutUser} className='header-bot-popup__exit-label'>
-        Выход {login}
+        Выход из @{login}
       </div>
     </div>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(HeaderBotPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderBotPopup);

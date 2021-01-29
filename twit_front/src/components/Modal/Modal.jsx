@@ -13,7 +13,7 @@ const Modal = ({ active, setActive }) => {
         className='modal--window__content'
         onClick={(e) => e.stopPropagation()}
       >
-        <NewTwitArea />
+        <NewTwitArea isActive={active} />
       </div>
     </div>
   );

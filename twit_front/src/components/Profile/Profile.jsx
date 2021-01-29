@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions/twitterAction';
-import MainTwit from '../MainTwit';
+import MainTweetProfile from '../MainTweet/MainTweetProfile';
 import ProfileModal from '../ProfileModal';
 import './Profile.scss';
+import moment from 'moment';
 
-const Profile = ({ currentUser }) => {
+const Profile = ({ currentUser, allTweets }) => {
   const [modalActive, setModalActive] = useState(true);
   const { name, login, avatar } = currentUser;
 
@@ -25,7 +26,7 @@ const Profile = ({ currentUser }) => {
           </div>
           <div className='profile__header-label'>
             <div>{name}</div>
-            <div className='profile__header-label-count'>{`${currentUser.twits.length} tweets`}</div>
+            <div className='profile__header-label-count'>{`${currentUser.tweets.length} tweets`}</div>
           </div>
         </div>
         <div className='profile__user-data'>
@@ -69,7 +70,7 @@ const Profile = ({ currentUser }) => {
               </div>
               <div className='profile__user-data-info-icons'>
                 <i className='bi bi-calendar3'></i>
-                Joined Semptember 2020
+                {`Joined ${moment(currentUser.regDate).format('MMMM YY')}`}
               </div>
             </div>
             <div className='d-flex flex-row profile__user-data-info-follow-text'>
@@ -82,7 +83,7 @@ const Profile = ({ currentUser }) => {
             </div>
           </div>
         </div>
-        <MainTwit />
+        <MainTweetProfile />
       </div>
     </div>
   );
@@ -91,6 +92,7 @@ const Profile = ({ currentUser }) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
+    allTweets: state.allTweets,
   };
 };
 

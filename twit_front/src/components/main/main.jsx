@@ -1,5 +1,5 @@
 import React from 'react';
-import MainTwit from '../MainTwit';
+import MainTweetHome from '../MainTweet/MainTweetHome';
 import NewTwitArea from '../NewTwitArea/NewTwitArea';
 import './Main.scss';
 
@@ -12,7 +12,7 @@ const Main = () => {
         </div>
         <NewTwitArea />
         <div className='home__twits-line'>
-          <MainTwit />
+          <MainTweetHome />
         </div>
       </div>
     </div>

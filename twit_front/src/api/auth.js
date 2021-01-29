@@ -11,7 +11,7 @@ export const loginUserReq = (loginData) => {
 export const checkAuthReq = () => {
   const config = {
     url: 'http://localhost:8080/api/reload',
-    method: 'get',
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },

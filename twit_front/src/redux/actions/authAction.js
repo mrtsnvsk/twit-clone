@@ -22,8 +22,7 @@ export const checkAuthUser = () => {
   return async (dispatch) => {
     const response = await checkAuthReq();
     const currentUser = getResponse(response);
-    dispatch(authUser(currentUser));
-    localStorage.setItem('token', response.data.token);
+    currentUser ? dispatch(authUser(currentUser)) : dispatch(logoutUser());
   };
 };
 

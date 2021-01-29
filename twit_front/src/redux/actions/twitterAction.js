@@ -46,9 +46,7 @@ export const deleteTweet = (id, tweetId) => {
 export const likeTweet = (id, tweetId, likedUser) => {
   return async (dispatch) => {
     const response = await likeTweetReq(id, tweetId, likedUser);
-    console.log('res', response);
     const currentUser = getResponse(response);
-    // dispatch(authUser(currentUser));
     dispatch(getAllTweets());
   };
 };

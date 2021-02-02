@@ -44,6 +44,12 @@
         border: 1px solid $blueColorActive;
         outline: none;
       }
+
+      .login-form_add-data-validate-error {
+        position: absolute;
+        font-size: 12px;
+        color: red;
+      }
     }
 
     .login-form__add-data label {

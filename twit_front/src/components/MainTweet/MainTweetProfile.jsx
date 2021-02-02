@@ -2,13 +2,17 @@ import { MainTweetHelper } from './MainTweetHelper';
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions/twitterAction';
 
-const MainTweetProfile = ({ currentUser, deleteTweet, likeTweet }) => {
-  return MainTweetHelper(
-    currentUser.tweets,
-    currentUser,
-    deleteTweet,
-    likeTweet
-  );
+const MainTweetProfile = ({
+  currentUser,
+  deleteTweet,
+  likeTweet,
+  allTweets,
+}) => {
+  const tweets = allTweets.filter((el) => {
+    return el.userId === currentUser.id;
+  });
+
+  return MainTweetHelper(tweets, currentUser, deleteTweet, likeTweet);
 };
 
 const mapStateToProps = (state) => {
@@ -25,4 +29,5 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action.likeTweet(id, tweetId, likedUser)),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(MainTweetProfile);

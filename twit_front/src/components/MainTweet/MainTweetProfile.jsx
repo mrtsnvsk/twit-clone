@@ -1,4 +1,4 @@
-import { MainTweetHelper } from './MainTweetHelper';
+import MainTweetHelper from './MainTweetHelper';
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions/twitterAction';
 
@@ -6,13 +6,22 @@ const MainTweetProfile = ({
   currentUser,
   deleteTweet,
   likeTweet,
+  unlikeTweet,
   allTweets,
 }) => {
   const tweets = allTweets.filter((el) => {
     return el.userId === currentUser.id;
   });
 
-  return MainTweetHelper(tweets, currentUser, deleteTweet, likeTweet);
+  return (
+    <MainTweetHelper
+      data={tweets}
+      currentUser={currentUser}
+      deleteTweet={deleteTweet}
+      likeTweet={likeTweet}
+      unlikeTweet={unlikeTweet}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {
@@ -27,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteTweet: (id, tweetId) => dispatch(action.deleteTweet(id, tweetId)),
     likeTweet: (id, tweetId, likedUser) =>
       dispatch(action.likeTweet(id, tweetId, likedUser)),
+    unlikeTweet: (id, tweetId, likedUser) => dispatch(action.unlikeTweet(id, tweetId, likedUser)),
   };
 };
 

@@ -2,7 +2,7 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-const newTwitController = async (req, res) => {
+const newTweetController = async (req, res) => {
   try {
     const { id, newTwit } = req.body;
     const findUser = await User.findOne({ _id: id });
@@ -35,4 +35,4 @@ const newTwitController = async (req, res) => {
   }
 };
 
-module.exports = newTwitController;
+module.exports = newTweetController;

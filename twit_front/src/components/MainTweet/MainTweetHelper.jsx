@@ -2,7 +2,13 @@ import React from 'react';
 import './MainTweetHelper.scss';
 import moment from 'moment';
 
-export const MainTweetHelper = (data, currentUser, fn, likeTweet) => {
+const MainTweetHelper = ({
+  data,
+  currentUser,
+  deleteTweet,
+  likeTweet,
+  unlikeTweet,
+}) => {
   const tweetAgoTime = (start, end) => {
     let a = moment(end);
     let b = moment(start);
@@ -52,8 +58,8 @@ export const MainTweetHelper = (data, currentUser, fn, likeTweet) => {
                 <div
                   type='button'
                   className='main-twit__twit-user-data-label-more'
-                  active={el.id === currentUser.id ? 'true' : 'false'}
-                  onClick={() => fn(currentUser.id, el.tweetId)}
+                  active={el.userId.includes(currentUser.id) ? 'true' : 'false'}
+                  onClick={() => deleteTweet(currentUser.id, el.tweetId)}
                 >
                   <i className='bi bi-trash main-twit__twit-user-data-label-second-data'></i>
                 </div>
@@ -82,7 +88,9 @@ export const MainTweetHelper = (data, currentUser, fn, likeTweet) => {
             </div>
             <div
               onClick={() =>
-                likeTweet(el.userId, el.tweetId, currentUser.login)
+                el.likes.includes(currentUser.login)
+                  ? unlikeTweet(el.userId, el.tweetId, currentUser.login)
+                  : likeTweet(el.userId, el.tweetId, currentUser.login)
               }
               type='button'
               className={`main-twit__twit-icon main-twit__twit-icon-like ${
@@ -108,3 +116,5 @@ export const MainTweetHelper = (data, currentUser, fn, likeTweet) => {
     );
   });
 };
+
+export default MainTweetHelper;

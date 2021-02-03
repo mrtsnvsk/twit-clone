@@ -1,5 +1,5 @@
 import * as constant from '../constants';
-import { registerUserReq, loginUserReq } from '../../api/auth';
+import { registerUserReq, loginUserReq } from '../../api/index';
 import { getResponse } from './getResponse';
 import { authUser } from './authUserAction';
 import { checkAuthReq } from '../../api/auth';

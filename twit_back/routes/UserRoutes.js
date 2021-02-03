@@ -1,29 +1,33 @@
 const { Router } = require('express');
 const router = Router();
-const registration = require('../controllers/authController/registerController');
-const login = require('../controllers/authController/loginController');
-const uploadAvatar = require('../controllers/actionWithDataController/uploadAvatarController');
-const newTwitController = require('../controllers/actionWithDataController/newTwitController');
-const deleteTweetController = require('../controllers/actionWithDataController/deleteTweetController');
 const checkAuthMiddleware = require('../middleware/checkAuthMiddleware');
-const checkAuthController = require('../controllers/authController/checkAuthController');
-const allTweetsController = require('../controllers/actionWithDataController/allTweetsController');
+const {
+  registrationController,
+  loginController,
+  checkAuthController,
+  uploadAvatarController,
+  newTweetController,
+  deleteTweetController,
+  allTweetsController,
+  likeTweetController,
+  unlikeTweetController,
+} = require('../controllers/index');
 /////
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
 // http://localhost:8080/api/registration
-router.post('/registration', registration);
+router.post('/registration', registrationController);
 
 // http://localhost:8080/api/login
-router.post('/login', login);
+router.post('/login', loginController);
 
 // http://localhost:8080/api/uploadAvatar
-router.post('/uploadAvatar', uploadAvatar);
+router.post('/uploadAvatar', uploadAvatarController);
 
 // http://localhost:8080/api/newTwit
-router.post('/newTweet', newTwitController);
+router.post('/newTweet', newTweetController);
 
 // http://localhost:8080/api/reload
 router.get('/reload', checkAuthMiddleware, checkAuthController);
@@ -35,43 +39,9 @@ router.post('/deleteTweet', deleteTweetController);
 router.get('/allTweets', allTweetsController);
 
 // http://localhost:8080/api/likeTweet
-router.post('/likeTweet', async (req, res) => {
-  try {
-    const { id, tweetId, likedUser } = req.body;
-    const currentUser = await User.findOne({ _id: id });
-    let likedTweet = currentUser.tweets.filter((el) => el.tweetId === tweetId);
-    likedTweet.map((el) => {
-      if (!el.likes.includes(likedUser)) {
-        console.log('likes', el.likes);
-        console.log('user', likedUser);
-        return el.likes.push(likedUser);
-      }
-    });
+router.post('/likeTweet', likeTweetController);
 
-    const otherTweets = currentUser.tweets.filter(
-      (el) => el.tweetId !== tweetId
-    );
-    const tweets = [...otherTweets, ...likedTweet];
-    await User.updateOne({ _id: id }, { tweets: tweets });
-    const newData = await User.findOne({ _id: id });
-
-    const token = jwt.sign(
-      {
-        email: newData.email,
-        login: newData.login,
-        name: newData.name,
-        id: newData._id,
-        regDate: newData.registrationDate,
-        avatar: newData.avatar,
-        tweets: newData.tweets,
-      },
-      config.get('jwtSecretKey')
-    );
-
-    res.json({ token });
-  } catch (e) {
-    res.status(401).json({ error: 'Ошибка при лайке записи.' });
-  }
-});
+// http://localhost:8080/api/unlikeTweet
+router.post('/unlikeTweet', unlikeTweetController);
 
 module.exports = router;

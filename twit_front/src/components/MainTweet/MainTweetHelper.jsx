@@ -87,10 +87,12 @@ const MainTweetHelper = ({
               </div>
             </div>
             <div
-              onClick={() =>
+              onClick={(e) =>
                 el.likes.includes(currentUser.login)
-                  ? unlikeTweet(el.userId, el.tweetId, currentUser.login)
-                  : likeTweet(el.userId, el.tweetId, currentUser.login)
+                  ? unlikeTweet(el.userId, el.tweetId, currentUser.login) &&
+                    e.stopPropagation()
+                  : likeTweet(el.userId, el.tweetId, currentUser.login) &&
+                    e.stopPropagation()
               }
               type='button'
               className={`main-twit__twit-icon main-twit__twit-icon-like ${

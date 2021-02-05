@@ -3,3 +3,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOG_OUT = 'LOG_OUT';
 export const AUTH_USER = 'AUTH_USER';
 export const GET_ALL_TWEETS = 'GET_ALL_TWEETS';
+export const REG_ERROR = 'REG_ERROR';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const SUCCESS_REG = 'SUCCESS_REG';
+export const CHECK_AUTH = 'CHECK_AUTH';

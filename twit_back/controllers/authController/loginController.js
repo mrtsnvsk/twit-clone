@@ -11,9 +11,7 @@ const loginController = async (req, res) => {
     const matchUserLogin = await User.findOne({ login: login });
 
     if (!matchUserLogin && !matchUserEmail) {
-      return res
-        .status(401)
-        .json({ error: 'Неверные данные при авторизации123' });
+      return res.json({ error: 'Неверные данные при авторизации.' });
     }
 
     let curUser = {};
@@ -29,9 +27,7 @@ const loginController = async (req, res) => {
     const isMatch = await bcrypt.compare(password, curUser.password);
 
     if (!isMatch) {
-      return res
-        .status(401)
-        .json({ error: 'Неверные данные при авторизации.' });
+      return res.json({ error: 'Неверные данные при авторизации' });
     }
 
     const token = jwt.sign(
@@ -47,11 +43,11 @@ const loginController = async (req, res) => {
       config.get('jwtSecretKey')
     );
 
-    return res.json({
+    res.json({
       token,
     });
   } catch (e) {
-    res.status(401).json({ error: 'Ошибка при авторизации.' });
+    res.json({ error: 'Ошибка при авторизации.' });
   }
 };
 

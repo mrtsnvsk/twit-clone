@@ -12,11 +12,15 @@ import * as constant from '../constants';
 
 export const getAllTweets = () => {
   return async (dispatch) => {
-    const response = await getAllTweetsReq();
-    dispatch({
-      type: constant.GET_ALL_TWEETS,
-      payload: response.data,
-    });
+    try {
+      const response = await getAllTweetsReq();
+      return dispatch({
+        type: constant.GET_ALL_TWEETS,
+        payload: response.data,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 };
 

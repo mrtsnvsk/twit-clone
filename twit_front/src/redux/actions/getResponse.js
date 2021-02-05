@@ -11,6 +11,9 @@ export const getResponse = (response) => {
         })
         .join('')
     );
+
     return JSON.parse(jsonPayload);
+  } else {
+    console.log('Error');
   }
 };

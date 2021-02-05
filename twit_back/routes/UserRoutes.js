@@ -13,9 +13,9 @@ const {
   unlikeTweetController,
 } = require('../controllers/index');
 /////
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const config = require('config');
+// const User = require('../models/User');
+// const jwt = require('jsonwebtoken');
+// const config = require('config');
 
 // http://localhost:8080/api/registration
 router.post('/registration', registrationController);
@@ -30,7 +30,7 @@ router.post('/uploadAvatar', uploadAvatarController);
 router.post('/newTweet', newTweetController);
 
 // http://localhost:8080/api/reload
-router.get('/reload', checkAuthMiddleware, checkAuthController);
+// router.get('/reload', checkAuthMiddleware, checkAuthController);
 
 // http://localhost:8080/api/deleteTweet
 router.post('/deleteTweet', deleteTweetController);

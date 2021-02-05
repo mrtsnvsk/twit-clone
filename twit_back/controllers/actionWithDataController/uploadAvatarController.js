@@ -26,7 +26,7 @@ const uploadAvatarController = async (req, res) => {
       token,
     });
   } catch (e) {
-    res.status(401).json({ error: 'Ошибка при загрузке файла.' });
+    res.json({ error: 'Ошибка при загрузке файла.' });
   }
 };
 

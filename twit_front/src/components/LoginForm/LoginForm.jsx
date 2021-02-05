@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import RegistrationForm from '../RegistrationForm';
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions/authAction';
 import * as yup from 'yup';
 import { Field, Form, ErrorMessage, Formik } from 'formik';
+import RegistrationForm from '../RegistrationForm';
+import ErrorBundry from '../ErrorBundry';
 import './LoginForm.scss';
 
-const LoginForm = ({ loginUser }) => {
+const LoginForm = ({ loginUser, loginError, onLoginError }) => {
   const [modalActive, setModalActive] = useState(true);
 
   const onHandleKeyPress = (e) => {
     if (e.keyCode === 27) {
-      setModalActive(true);
+      return setModalActive(true);
     }
   };
 
@@ -23,7 +24,9 @@ const LoginForm = ({ loginUser }) => {
           <i className='bi bi-twitter login-form__twitter-logo-image'></i>
         </div>
         <div className='login-form__auth-label'>Войти в твиттер</div>
-
+        {loginError && setTimeout(() => onLoginError(null), 3000) && (
+          <ErrorBundry error={loginError} />
+        )}
         <Formik
           initialValues={{
             login: '',
@@ -67,7 +70,6 @@ const LoginForm = ({ loginUser }) => {
                 <ErrorMessage name='password' />
               </p>
             </div>
-
             <div className='login-form__add-data'>
               <button type='submit' className='btn btn-primary'>
                 Войти
@@ -75,7 +77,6 @@ const LoginForm = ({ loginUser }) => {
             </div>
           </Form>
         </Formik>
-
         <div className='login-form__help-labels'>
           <label type='button'>Забыли пароль?</label>
           <span>
@@ -90,10 +91,17 @@ const LoginForm = ({ loginUser }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    loginUser: (data) => dispatch(action.loginUser(data)),
+    loginError: state.loginError,
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (data) => dispatch(action.loginUser(data)),
+    onLoginError: (error) => dispatch(action.onLoginError(error)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

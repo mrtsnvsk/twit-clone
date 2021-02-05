@@ -8,9 +8,7 @@ const registrationController = async (req, res) => {
     const existUser = await User.findOne({ email });
 
     if (existUser) {
-      return res
-        .status(401)
-        .json({ message: 'Такой пользователь уже зарегистрирован.' });
+      return res.json({ error: 'Такой пользователь уже зарегистрирован.' });
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
@@ -24,7 +22,7 @@ const registrationController = async (req, res) => {
 
     res.json({ message: 'Учетная запись успешно создана.' });
   } catch (e) {
-    res.status(401).json({ error: 'Ошибка при регистрации.' });
+    res.json({ error: 'Ошибка при регистрации.' });
   }
 };
 

@@ -5,6 +5,7 @@
   padding-top: 10px;
   padding-left: 15px;
   border-bottom: 1px solid rgb(56, 68, 77);
+  cursor: pointer;
 }
 .main-twit__twit:hover {
   background-color: rgba(255, 255, 255, 0.03);
@@ -79,31 +80,31 @@
   border-radius: $borderRadiusMax;
 }
 .main-twit__twit-icon-reply:hover .main-twit__twit-icon-description-reply {
-  color: rgba(29, 161, 242, 1);
+  color: $replyColor;
   border-radius: $borderRadiusMax;
 }
 /* repost */
 .main-twit__twit-icon-repost:hover i {
   background-color: $blueColorHover;
-  color: rgb(23, 191, 99);
+  color: $repostColor;
   border-radius: $borderRadiusMax;
 }
 .main-twit__twit-icon-repost:hover .main-twit__twit-icon-description-repost {
-  color: rgb(23, 191, 99);
+  color: $repostColor;
   border-radius: $borderRadiusMax;
 }
 /* like */
 .main-twit__twit-icon-like:hover i {
   background-color: $blueColorHover;
-  color: rgb(224, 36, 94);
+  color: $likeColor;
   border-radius: $borderRadiusMax;
 }
 
 .main-twit__twit-icon-like-active i {
-  color: rgb(224, 36, 94);
+  color: $likeColor;
 }
 .main-twit__twit-icon-like:hover .main-twit__twit-icon-description-like {
-  color: rgb(224, 36, 94);
+  color: $likeColor;
   border-radius: $borderRadiusMax;
 }
 /* share */

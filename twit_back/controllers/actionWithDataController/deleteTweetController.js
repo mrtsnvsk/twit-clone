@@ -26,7 +26,7 @@ const deleteTweetController = async (req, res) => {
 
     res.json({ token });
   } catch (e) {
-    res.status(401).json({ error: 'Ошибка при удалении твита.' });
+    res.json({ error: 'Ошибка при удалении твита.' });
   }
 };
 

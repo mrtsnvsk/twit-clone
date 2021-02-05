@@ -9,7 +9,7 @@ const likeTweetController = async (req, res) => {
     let likedTweet = currentUser.tweets.filter((el) => el.tweetId === tweetId);
     likedTweet.map((el) => {
       if (!el.likes.includes(likedUser)) {
-        return el.likes.push(likedUser);
+        el.likes.push(likedUser);
       }
     });
 
@@ -70,7 +70,7 @@ const unlikeTweetController = async (req, res) => {
 
     res.json({ token });
   } catch (e) {
-    res.status(401).json({ error: 'Что-то пошло не так, попробуйте снова.' });
+    res.json({ error: 'Что-то пошло не так, попробуйте снова.' });
   }
 };
 

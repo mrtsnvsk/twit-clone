@@ -9,11 +9,12 @@ export const loginUserReq = (loginData) => {
 };
 
 export const checkAuthReq = () => {
+  const token = localStorage.getItem('token') || {};
   const config = {
     url: 'http://localhost:8080/api/reload',
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: token,
     },
   };
   return axios(config);

@@ -7,8 +7,9 @@ import * as action from '../../redux/actions/authAction';
 import * as tweetAction from '../../redux/actions/twitterAction';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.scss';
 import Profile from '../Profile/Profile';
+import Replyes from '../Replyes/Replyes';
+import './App.scss';
 
 const App = ({ isAuth, checkAuthUser, getAllTweets, allTweets }) => {
   useEffect(() => {
@@ -23,12 +24,13 @@ const App = ({ isAuth, checkAuthUser, getAllTweets, allTweets }) => {
           exact
           path={['/', '/home', '/profile', '/notifications', '/messages']}
         >
-          <Redirect from='/' to='/home' />
+          <Redirect from='/' to='/messages' />
           <div className='app'>
             <Header />
             <Switch>
               <Route path='/home' component={Main} />
               <Route path='/profile' component={Profile} />
+              <Route path='/messages' component={Replyes} />
             </Switch>
             <Sidebar />
           </div>

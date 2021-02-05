@@ -3,28 +3,19 @@ import { connect } from 'react-redux';
 import * as action from '../../redux/actions/authAction';
 import * as yup from 'yup';
 import { Field, Form, ErrorMessage, Formik } from 'formik';
+import ErrorBundry from '../ErrorBundry';
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ active, setActive, registerUser }) => {
-  // const [regData, setRegData] = useState({
-  //   name: '',
-  //   login: '',
-  //   email: '',
-  //   password: '',
-  // });
-
-  // const onHandlerChange = (e) => {
-  //   setRegData({ ...regData, [e.target.name]: e.target.value });
-  // };
-
-  // const onHandlerRegister = (e) => {
-  //   const form = e.target;
-  //   e.preventDefault();
-  //   registerUser({ ...regData });
-  //   form.reset();
-  // };
-
-  function validateEmail(value) {
+const RegistrationForm = ({
+  active,
+  setActive,
+  registerUser,
+  onRegError,
+  regError,
+  successReg,
+  onSuccessReg,
+}) => {
+  const validateEmail = (value) => {
     let error;
     if (!value) {
       error = 'Ввведите email';
@@ -32,7 +23,7 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
       error = 'Некорректный email';
     }
     return error;
-  }
+  };
 
   return (
     <Formik
@@ -80,6 +71,15 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
             <div className='login-form__twitter-logo'>
               <i className='bi bi-twitter login-form__twitter-logo-image'></i>
             </div>
+            {successReg && setTimeout(() => onSuccessReg(null), 3000) && (
+              <div className='alert alert-success' role='alert'>
+                {successReg}
+              </div>
+            )}
+
+            {regError && setTimeout(() => onRegError(null), 3000) && (
+              <ErrorBundry error={regError} />
+            )}
             <div className='login-form__auth-label'>
               Зарегистрироваться в твиттере
             </div>
@@ -147,10 +147,19 @@ const RegistrationForm = ({ active, setActive, registerUser }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    registerUser: (data) => dispatch(action.registerUser(data)),
+    regError: state.regError,
+    successReg: state.successReg,
   };
 };
 
-export default connect(null, mapDispatchToProps)(RegistrationForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    registerUser: (data) => dispatch(action.registerUser(data)),
+    onRegError: (error) => dispatch(action.onRegError(error)),
+    onSuccessReg: (message) => dispatch(action.onSuccessReg(message)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);

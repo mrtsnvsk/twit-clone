@@ -29,7 +29,7 @@ const newTweetController = async (req, res) => {
       token,
     });
   } catch (e) {
-    res.status(401).send({
+    res.json({
       error: 'Ошибка при создании нового твита.',
     });
   }

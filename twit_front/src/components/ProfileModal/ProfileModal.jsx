@@ -5,9 +5,28 @@ import './ProfileModal.scss';
 
 const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
   const { id, avatar } = currentUser;
+  // const [file, setFile] = useState();
+
+  // function handleUserImage(e) {
+  //   e.preventDefault();
+
+  //   if (file) {
+  //     const formdata = new FormData();
+  //     formdata.append('photo', file);
+  //     console.log('formdata', ...formdata);
+
+  //     for (let pair of formdata.entries()) {
+  //       console.log('kek', pair[1]);
+
+  //       getAvatar(pair[1]);
+  //     }
+  //   }
+  // }
 
   return (
     <form
+      // encType='multipart/form-data'
+      // onSubmit={(e) => handleUserImage(e)}
       className='profile-modal'
       hidden={active}
       onClick={() => setActive(true)}
@@ -25,7 +44,7 @@ const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
               Редактирование профиля
             </div>
             <div className='profile-modal__edit-button'>
-              <button type='button' className='btn btn-primary'>
+              <button type='submit' className='btn btn-primary'>
                 Сохранить
               </button>
             </div>
@@ -39,6 +58,7 @@ const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
                 type='file'
                 id='upload'
                 hidden
+                // onChange={(e) => setFile(e.target.files[0])}
                 onChange={(e) => getAvatar(id, e.target.files[0].name)}
               />
               <label htmlFor='upload'>
@@ -48,6 +68,7 @@ const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
                 />
               </label>
             </div>
+
             <div style={{ marginLeft: 20, fontSize: 14, textAlign: 'center' }}>
               <div>Нажмите на аватарку,</div>
               <div>чтобы сменить фото.</div>
@@ -94,7 +115,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAvatar: (id, avatar) => dispatch(action.getAvatar(id, avatar)),
+    getAvatar: (id, file) => dispatch(action.getAvatar(id, file)),
   };
 };
 

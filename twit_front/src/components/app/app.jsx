@@ -7,43 +7,37 @@ import * as action from '../../redux/actions/authAction';
 import * as tweetAction from '../../redux/actions/twitterAction';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Profile from '../Profile/Profile';
-import Replyes from '../Replyes/Replyes';
+import Profile from '../Profile';
+import CurrentTweet from '../CurrentTweet/CurrentTweet';
 import './App.scss';
 
-const App = ({ isAuth, checkAuthUser, getAllTweets, allTweets }) => {
+const App = ({
+  isAuth,
+  checkAuthUser,
+  getAllTweets,
+  allTweets,
+  logoutUser,
+}) => {
   useEffect(() => {
     getAllTweets();
-    if (localStorage.getItem('token')) checkAuthUser();
-  }, [checkAuthUser, getAllTweets, allTweets.length]);
+    localStorage.getItem('token') ? checkAuthUser() : logoutUser();
+  }, [checkAuthUser, getAllTweets, logoutUser]);
 
   return (
     <>
+      {!isAuth && <Route path='/login' component={LoginForm} />}
       {isAuth && (
-        <Route
-          exact
-          path={['/', '/home', '/profile', '/notifications', '/messages']}
-        >
-          <Redirect from='/' to='/messages' />
-          <div className='app'>
-            <Header />
-            <Switch>
-              <Route path='/home' component={Main} />
-              <Route path='/profile' component={Profile} />
-              <Route path='/messages' component={Replyes} />
-            </Switch>
-            <Sidebar />
-          </div>
-        </Route>
+        <div className='app'>
+          <Header />
+          <Switch>
+            <Route path='/home' component={Main} />
+            <Route path='/profile' component={Profile} />
+            <Route path='/tweets/:id' component={CurrentTweet} />
+          </Switch>
+          <Sidebar />
+        </div>
       )}
-      {!isAuth && (
-        <Redirect
-          from={('/', '/home', '/profile', '/notifications', '/messages')}
-          to='/login'
-        />
-      )}
-      {!isAuth && <Route exact path='/login' component={LoginForm} />}
-      {isAuth && <Redirect from='/login' to='/home' />}
+      {!isAuth && <Redirect to='/login' />}
     </>
   );
 };
@@ -59,6 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     checkAuthUser: () => dispatch(action.checkAuthUser()),
     getAllTweets: () => dispatch(tweetAction.getAllTweets()),
+    logoutUser: () => dispatch(action.logoutUser()),
   };
 };
 

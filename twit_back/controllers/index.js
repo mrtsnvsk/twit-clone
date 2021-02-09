@@ -2,15 +2,17 @@
 const registrationController = require('./authController/registerController');
 const loginController = require('./authController/loginController');
 const checkAuthController = require('./authController/checkAuthController');
-// actions
-const uploadAvatarController = require('./actionWithDataController/uploadAvatarController');
-const newTweetController = require('./actionWithDataController/newTweetController');
-const deleteTweetController = require('./actionWithDataController/deleteTweetController');
-const allTweetsController = require('./actionWithDataController/allTweetsController');
+// tweets
+const uploadAvatarController = require('./tweetControllers/uploadAvatarController');
+const newTweetController = require('./tweetControllers/newTweetController');
+const deleteTweetController = require('./tweetControllers/deleteTweetController');
+const allTweetsController = require('./tweetControllers/allTweetsController');
+const currentTweetController = require('./tweetControllers/currentTweetController');
+const addReplyController = require('./tweetControllers/addReplyController');
 const {
   likeTweetController,
   unlikeTweetController,
-} = require('./actionWithDataController/likeTweetController');
+} = require('./tweetControllers/likeTweetController');
 
 module.exports = {
   registrationController,
@@ -22,4 +24,6 @@ module.exports = {
   allTweetsController,
   likeTweetController,
   unlikeTweetController,
+  currentTweetController,
+  addReplyController,
 };

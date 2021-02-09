@@ -33,10 +33,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteTweet: (id, tweetId) => dispatch(action.deleteTweet(id, tweetId)),
-    likeTweet: (id, tweetId, likedUser) =>
-      dispatch(action.likeTweet(id, tweetId, likedUser)),
-    unlikeTweet: (id, tweetId, likedUser) => dispatch(action.unlikeTweet(id, tweetId, likedUser)),
+    deleteTweet: (userId, tweetId) =>
+      dispatch(action.deleteTweet(userId, tweetId)),
+    likeTweet: (tweetId, likedUser) =>
+      dispatch(action.likeTweet(tweetId, likedUser)),
+    unlikeTweet: (tweetId, likedUser) =>
+      dispatch(action.unlikeTweet(tweetId, likedUser)),
   };
 };
 

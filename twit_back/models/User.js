@@ -27,10 +27,6 @@ const schema = new Schema({
     type: Array,
     default: [],
   },
-  tweets: {
-    type: Array,
-    default: [],
-  },
   registrationDate: { type: Date, default: Date.now },
 });
 

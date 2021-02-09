@@ -1,0 +1,118 @@
+@import '../styles.scss';
+
+.new-reply {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  z-index: 99;
+
+  .new-reply__content {
+    min-width: 600px;
+    max-height: 90vh;
+    border-radius: 12px;
+    background-color: rgb(21, 32, 43);
+    margin-right: 106px;
+    margin-bottom: 10px;
+
+    .new-reply__header {
+      height: 52px;
+      border-bottom: $borderLine;
+
+      .new-reply__header-icon {
+        width: 37px;
+        height: 37px;
+        margin-left: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+      }
+      .new-reply__header-icon:hover {
+        border-radius: $borderRadiusMax;
+        background-color: $blueColorHover;
+      }
+
+      .new-reply__header-icon i {
+        color: $blueColorActive;
+        font-size: 30px;
+      }
+    }
+    .new-reply__quote-content {
+      padding: 15px;
+
+      .new-reply__quote-content-avatar img {
+        border-radius: $borderRadiusMax;
+        width: 49px;
+        height: 49px;
+      }
+
+      .new-reply__quote-container {
+        font-size: 15px;
+        margin-left: 10px;
+        padding-bottom: 10px;
+        .new-reply__quote-user-data {
+          margin-bottom: 3px;
+          .new-reply__quote-user-data-name {
+            margin-right: 4px;
+            font-weight: 700;
+          }
+          .new-reply__quote-user-data-other span {
+            color: $greyColor;
+            font-weight: 400;
+          }
+          .new-reply__quote-user-data-other span i {
+            color: $greyColor;
+          }
+        }
+        .new-reply__quote-from {
+          padding-top: 10px;
+          color: $blueColorActive;
+        }
+        .new-reply__quote-from span {
+          color: $greyColor;
+        }
+      }
+    }
+  }
+
+  .new-reply__quote {
+    padding-left: 15px;
+    .new-reply__quote-avatar img {
+      padding-top: 5px;
+      width: 49px;
+      height: 49px;
+      border-radius: $borderRadiusMax;
+    }
+    .new-reply__quote-area {
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+    .new-reply__quote-area textarea {
+      width: 500px;
+      height: 100%;
+      color: white;
+      background-color: $globalColor;
+      font-size: 20px;
+      border: none;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+    }
+  }
+  .new-reply__submit {
+    margin: 15px;
+  }
+  .new-reply__submit button {
+    margin-bottom: 15px;
+    float: right;
+    width: 98px;
+    height: 39px;
+    background-color: $blueColorActive;
+    border-radius: $borderRadiusMax;
+  }
+}

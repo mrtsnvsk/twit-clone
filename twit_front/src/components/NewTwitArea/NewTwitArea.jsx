@@ -8,45 +8,44 @@ const NewTwitArea = ({ currentUser, addNewTweet, isActive }) => {
 
   const sentData = (e) => {
     e.preventDefault();
-    addNewTweet(currentUser.id, {
+    addNewTweet({
       text: newTweet,
       likes: [],
       reposts: [],
       replyes: [],
       createDate: new Date(),
-      tweetId: Date.now(),
       login: currentUser.login,
       name: currentUser.name,
       avatar: currentUser.avatar,
       userId: currentUser.id,
+      tweetId: Date.now(),
     });
     e.target.reset();
   };
 
   return (
     <form onSubmit={sentData}>
-      <div>
-        <div className='new-twit-area__line'></div>
-        <div className='new-twit-area'>
-          <div className='new-twit-area__user-avatar'>
-            <img
-              src={`http://localhost:8080/static/${currentUser.avatar}`}
-              alt='user logo'
-            />
-          </div>
-          <div className='form-floating new-twit-area__new-twit-input'>
-            <textarea
-              onChange={(e) => setNewTweet(e.target.value)}
-              required={true}
-              placeholder='Что нового?'
-              className='form-control-label new-twit-area__new-twit-label'
-            ></textarea>
-            <div className='new-twit-area__new-twit-input-line'></div>
-            <div className='new-twit-area__new-twit-submit'>
-              <button type='submit' className='btn btn-primary'>
-                Твит
-              </button>
-            </div>
+      <div className='new-twit-area__line'></div>
+      <div className='new-twit-area'>
+        <div className='new-twit-area__user-avatar'>
+          <img
+            src={`http://localhost:8080/static/${currentUser.avatar}`}
+            alt='user logo'
+          />
+        </div>
+        <div className='form-floating new-twit-area__new-twit-input'>
+          <textarea
+            onChange={(e) => setNewTweet(e.target.value)}
+            required={true}
+            placeholder='Что нового?'
+            className='form-control-label new-twit-area__new-twit-label'
+          ></textarea>
+          <div className='new-twit-area__new-twit-input-line'></div>
+
+          <div className='new-twit-area__new-twit-submit'>
+            <button type='submit' className='btn btn-primary'>
+              Твит
+            </button>
           </div>
         </div>
       </div>
@@ -62,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewTweet: (id, tweet) => dispatch(action.addNewTweet(id, tweet)),
+    addNewTweet: (tweet) => dispatch(action.addNewTweet(tweet)),
   };
 };
 

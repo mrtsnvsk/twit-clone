@@ -16,6 +16,8 @@ const Profile = ({ currentUser, allTweets }) => {
     }
   };
 
+  const tweetCount = allTweets.filter((el) => el.login === login);
+
   return (
     <div className='app__main'>
       <ProfileModal active={modalActive} setActive={setModalActive} />
@@ -26,7 +28,7 @@ const Profile = ({ currentUser, allTweets }) => {
           </div>
           <div className='profile__header-label'>
             <div>{name}</div>
-            <div className='profile__header-label-count'>{`${currentUser.tweets.length} tweets`}</div>
+            <div className='profile__header-label-count'>{`${tweetCount.length} tweets`}</div>
           </div>
         </div>
         <div className='profile__user-data'>

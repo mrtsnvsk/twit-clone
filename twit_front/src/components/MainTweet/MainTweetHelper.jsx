@@ -1,6 +1,10 @@
-import React from 'react';
-import './MainTweetHelper.scss';
+import React, { useState } from 'react';
 import moment from 'moment';
+import * as action from '../../redux/actions/twitterAction';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import NewReplyArea from '../NewReplyArea';
+import './MainTweetHelper.scss';
 
 const MainTweetHelper = ({
   data,
@@ -8,7 +12,12 @@ const MainTweetHelper = ({
   deleteTweet,
   likeTweet,
   unlikeTweet,
+  getCurrentTweet,
 }) => {
+  const [activeReplyes, setActiveReplyes] = useState(true);
+
+  const history = useHistory();
+
   const tweetAgoTime = (start, end) => {
     let a = moment(end);
     let b = moment(start);
@@ -24,9 +33,21 @@ const MainTweetHelper = ({
     }
   };
 
+  const onLink = (e, el) => {
+    if (e.target.className === 'bi bi-chat') {
+    } else if (e.target.className !== 'new-reply') {
+      history.push(`/tweets/${el}`);
+    }
+  };
+
   return data.map((el, idx) => {
     return (
-      <div key={idx} className='main-twit__twit'>
+      <div
+        onClick={(e) => onLink(e, el.tweetId)}
+        className='main-twit__twit'
+        key={idx}
+      >
+        <NewReplyArea active={activeReplyes} setActive={setActiveReplyes} />
         <div className='main-twit__twit-avatar'>
           <img
             type='button'
@@ -54,12 +75,16 @@ const MainTweetHelper = ({
               </div>
             </div>
             <div>
-              {window.location.href !== 'http://localhost:3000/home' && (
+              {window.location.href === 'http://localhost:3000/profile' && (
                 <div
+                  style={{ zIndex: 100 }}
                   type='button'
                   className='main-twit__twit-user-data-label-more'
                   active={el.userId.includes(currentUser.id) ? 'true' : 'false'}
-                  onClick={() => deleteTweet(currentUser.id, el.tweetId)}
+                  onClick={(e) =>
+                    deleteTweet(currentUser.id, el.tweetId) &&
+                    e.stopPropagation()
+                  }
                 >
                   <i className='bi bi-trash main-twit__twit-user-data-label-second-data'></i>
                 </div>
@@ -67,14 +92,18 @@ const MainTweetHelper = ({
             </div>
           </div>
           <div>{el.text}</div>
+
           <div className='main-twit__twit-action-icons'>
             <div
+              onClick={() =>
+                getCurrentTweet(el.tweetId) && setActiveReplyes(false)
+              }
               type='button'
               className='main-twit__twit-icon main-twit__twit-icon-reply'
             >
               <i className='bi bi-chat'></i>
               <div className='main-twit__twit-icon-description main-twit__twit-icon-description-reply'>
-                {el.replyes}
+                {el.replyes.length > 0 ? el.replyes.length : null}
               </div>
             </div>
             <div
@@ -83,15 +112,15 @@ const MainTweetHelper = ({
             >
               <i className='bi bi-reply-all'></i>
               <div className='main-twit__twit-icon-description main-twit__twit-icon-description-repost'>
-                {el.reposts}
+                {el.reposts.length > 0 ? el.reposts.length : null}
               </div>
             </div>
             <div
               onClick={(e) =>
                 el.likes.includes(currentUser.login)
-                  ? unlikeTweet(el.userId, el.tweetId, currentUser.login) &&
+                  ? unlikeTweet(el.tweetId, currentUser.login) &&
                     e.stopPropagation()
-                  : likeTweet(el.userId, el.tweetId, currentUser.login) &&
+                  : likeTweet(el.tweetId, currentUser.login) &&
                     e.stopPropagation()
               }
               type='button'
@@ -119,4 +148,10 @@ const MainTweetHelper = ({
   });
 };
 
-export default MainTweetHelper;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCurrentTweet: (id) => dispatch(action.getCurrentTweet(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(MainTweetHelper);

@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
 const config = require('config');
 const fileMiddleware = require('./middleware/file');
 const bodyParser = require('body-parser');
@@ -25,6 +24,7 @@ const start = async () => {
     });
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use('/api', require('./routes/UserRoutes'));
+    app.use('/api', require('./routes/TweetRoutes'));
     app.use('/static', express.static('images'));
     app.use(fileMiddleware.single('avatar'));
 

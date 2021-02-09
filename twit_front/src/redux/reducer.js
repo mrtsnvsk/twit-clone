@@ -26,6 +26,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         allTweets: action.payload,
       };
+    case constant.GET_CUR_TWEET:
+      return {
+        ...state,
+        currentTweet: action.payload,
+      };
+    case constant.ADD_NEW_TWEET:
+      return {
+        ...state,
+        allTweets: action.payload,
+      };
     case constant.SUCCESS_REG:
       return {
         ...state,

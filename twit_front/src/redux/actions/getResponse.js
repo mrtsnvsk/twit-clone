@@ -1,7 +1,7 @@
 export const getResponse = (response) => {
-  if (response.data.token) {
-    localStorage.setItem('token', response.data.token);
-    let base64Url = response.data.token.split('.')[1];
+  if (response) {
+    localStorage.setItem('token', response);
+    let base64Url = response.split('.')[1];
     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     let jsonPayload = decodeURIComponent(
       atob(base64)
@@ -13,7 +13,5 @@ export const getResponse = (response) => {
     );
 
     return JSON.parse(jsonPayload);
-  } else {
-    console.log('Error');
   }
 };

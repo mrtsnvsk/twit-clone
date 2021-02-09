@@ -1,5 +1,5 @@
 import * as constant from '../constants';
-import { registerUserReq, loginUserReq } from '../../api/index';
+import { registerUserReq, loginUserReq } from '../../api/auth';
 import { getResponse } from './getResponse';
 import { authUser } from './authUserAction';
 
@@ -19,15 +19,14 @@ export const loginUser = (data) => {
     if (response.data.error) {
       return dispatch(onLoginError(response.data.error));
     }
-    const currentUser = getResponse(response);
+    const currentUser = getResponse(response.data.token);
     dispatch(authUser(currentUser));
   };
 };
 
 export const checkAuthUser = () => {
-  const token = localStorage.getItem('token').split('.')[1];
-  const currentUser = JSON.parse(window.atob(token));
-
+  const token = localStorage.getItem('token');
+  const currentUser = getResponse(token);
   return {
     type: constant.CHECK_AUTH,
     payload: currentUser,

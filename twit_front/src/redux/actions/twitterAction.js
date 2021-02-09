@@ -7,61 +7,102 @@ import {
   getAvatarReq,
   likeTweetReq,
   unlikeTweetReq,
-} from '../../api/index';
+  currentTweetReq,
+  newReplyReq,
+} from '../../api/tweetReq';
 import * as constant from '../constants';
 
-export const getAllTweets = () => {
+export const getAvatar = (file, id) => {
   return async (dispatch) => {
-    try {
-      const response = await getAllTweetsReq();
-      return dispatch({
-        type: constant.GET_ALL_TWEETS,
-        payload: response.data,
-      });
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-};
-
-export const getAvatar = (id, data) => {
-  return async (dispatch) => {
-    const response = await getAvatarReq(id, data);
-    const currentUser = getResponse(response);
+    const response = await getAvatarReq(file, id);
+    const currentUser = getResponse(response.data.token);
     dispatch(authUser(currentUser));
   };
 };
 
-export const addNewTweet = (id, tweet) => {
+export const getAllTweets = () => {
   return async (dispatch) => {
-    // const response = await addTweetReq(id, tweet);
-    // const currentUser = getResponse(response);
-    // dispatch(authUser(currentUser));
-    await addTweetReq(id, tweet);
+    const response = await getAllTweetsReq();
+    dispatch({
+      type: constant.GET_ALL_TWEETS,
+      payload: response.data,
+    });
+  };
+};
+
+export const getCurrentTweet = (id) => {
+  return async (dispatch) => {
+    const response = await currentTweetReq(id);
+    dispatch({
+      type: constant.GET_CUR_TWEET,
+      payload: response.data,
+    });
+  };
+};
+
+export const addNewTweet = (tweet) => {
+  return async (dispatch, getState) => {
+    await addTweetReq(tweet);
+    const oldTweets = getState();
+    let allTweets = [...oldTweets.allTweets, tweet];
+    allTweets.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+    dispatch({
+      type: constant.ADD_NEW_TWEET,
+      payload: allTweets,
+    });
+  };
+};
+
+export const newReply = (reply) => {
+  return async (dispatch, getState) => {
+    const response = await newReplyReq(reply);
+    let currentTweet = getState().currentTweet;
+
+    currentTweet.replyes.push(response.data);
+
+    dispatch({
+      type: constant.GET_CUR_TWEET,
+      payload: currentTweet,
+    });
+
+    const allTweets = getState().allTweets;
+    const before = allTweets.filter(
+      (el) => el.tweetId !== response.data.tweetIdOwner.toString()
+    );
+    let after = allTweets.filter(
+      (el) => el.tweetId === response.data.tweetIdOwner.toString()
+    );
+
+    after.map((el) => el.replyes.push(response.data));
+
+    let tweets = [...before, ...after];
+
+    tweets.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+
+    dispatch({
+      type: constant.GET_ALL_TWEETS,
+      payload: tweets,
+    });
+  };
+};
+
+export const deleteTweet = (userId, tweetId) => {
+  return async (dispatch) => {
+    await deleteTweetReq(userId, tweetId);
     dispatch(getAllTweets());
   };
 };
 
-export const deleteTweet = (id, tweetId) => {
+export const likeTweet = (tweetId, likedUser) => {
   return async (dispatch) => {
-    // const response = await deleteTweetReq(id, tweetId);
-    // const currentUser = getResponse(response);
-    // dispatch(authUser(currentUser));
-    await deleteTweetReq(id, tweetId);
+    await likeTweetReq(tweetId, likedUser);
     dispatch(getAllTweets());
   };
 };
 
-export const likeTweet = (id, tweetId, likedUser) => {
+export const unlikeTweet = (tweetId, likedUser) => {
   return async (dispatch) => {
-    await likeTweetReq(id, tweetId, likedUser);
-    dispatch(getAllTweets());
-  };
-};
-
-export const unlikeTweet = (id, tweetId, likedUser) => {
-  return async (dispatch) => {
-    await unlikeTweetReq(id, tweetId, likedUser);
+    await unlikeTweetReq(tweetId, likedUser);
     dispatch(getAllTweets());
   };
 };

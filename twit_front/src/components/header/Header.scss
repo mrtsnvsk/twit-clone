@@ -2,107 +2,111 @@
 
 .header {
   margin-left: 18px;
-  display: flex;
-  flex-direction: column;
+
+  .header__sidebar-twitter-logo {
+    margin-left: 16px;
+    margin-bottom: 5px;
+
+    .header__twitter-icon {
+      font-size: 28px;
+    }
+
+    .header__twitter-icon:hover {
+      color: $blueColorActive;
+    }
+  }
+
+  .header__sidebar-menu-items {
+    .nav-item {
+      margin-top: 10px;
+      border-radius: $borderRadiusMax;
+      font-weight: bold;
+      max-width: 229px;
+
+      .nav-link {
+        height: 46px;
+        font-size: 20px;
+        color: white;
+      }
+
+      .nav-link.nav-link-active {
+        color: $blueColorActive;
+      }
+
+      .nav-link.nav-link-active i {
+        color: $blueColorActive;
+      }
+
+      .nav-link:hover {
+        border-radius: $borderRadiusMax;
+        background-color: $blueColorHover;
+        color: $blueColorActive;
+      }
+      .nav-link:hover i {
+        color: $blueColorActive;
+      }
+    }
+    .nav-item i {
+      border-radius: $borderRadiusMax;
+      font-style: inherit;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  .header__btn-new-tweet {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header__btn-new-tweet button {
+    width: 229px;
+    height: 50px;
+    background-color: $blueColorActive;
+    border-radius: $borderRadiusMax;
+  }
+
+  .header__user-profile {
+    width: 240px;
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    border-radius: $borderRadiusMax;
+
+    .header__user-profile-username {
+      padding-top: -4px;
+      padding-right: 50px;
+
+      .header__user-profile-username-name {
+        font-weight: bold;
+      }
+
+      .header__user-profile-username-login {
+        color: rgb(136, 153, 166);
+      }
+    }
+
+    .header__user-profile-more {
+      padding-top: 5px;
+    }
+  }
+
+  .header__user-profile:hover {
+    background-color: $blueColorHover;
+    cursor: pointer;
+  }
+
+  .header__user-profile img {
+    border-radius: $borderRadiusMax;
+    width: 39px;
+    height: 39px;
+  }
 }
 
 .header:focus {
   outline: none;
-}
-
-.header__sidebar-twitter-logo {
-  margin-left: 16px;
-  margin-bottom: 5px;
-}
-
-.header__twitter-icon {
-  font-size: 28px;
-}
-
-.header__sidebar-menu-items {
-  margin-left: 10px;
-}
-
-.nav-link {
-  padding-left: 0;
-}
-
-.nav-item {
-  margin-top: 10px;
-}
-
-.nav-item i {
-  padding: 8px;
-  padding-bottom: 12px;
-  border-radius: $borderRadiusMax;
-  font-style: inherit;
-  font-weight: bold;
-}
-
-.nav-link i {
-  font-size: 20px;
-}
-
-.nav-link i:hover {
-  background-color: $blueColorHover;
-}
-
-.header__sidebar i:hover {
-  color: $blueColorActive;
-}
-
-i:active {
-  color: $blueColorHover;
-}
-
-.header__btn-new-tweet {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.header__btn-new-tweet button {
-  width: 229px;
-  height: 50px;
-  background-color: $blueColorActive;
-  border-radius: $borderRadiusMax;
-}
-
-.header__user-profile {
-  width: 240px;
-  height: 60px;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-around;
-  position: fixed;
-  bottom: 0;
-  border-radius: $borderRadiusMax;
-}
-
-.header__user-profile:hover {
-  background-color: $blueColorHover;
-  cursor: pointer;
-}
-
-.header__user-profile img {
-  border-radius: $borderRadiusMax;
-  width: 39px;
-  height: 39px;
-}
-
-.header__user-profile-username {
-  padding-top: -4px;
-  padding-right: 50px;
-}
-
-.header__user-profile-more {
-  padding-top: 5px;
-}
-
-.header__user-profile-username-name {
-  font-weight: bold;
-}
-
-.header__user-profile-username-login {
-  color: rgb(136, 153, 166);
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Modal from '../Modal';
 import HeaderBotPopup from '../HeaderBotPopup';
 import { connect } from 'react-redux';
@@ -19,7 +19,11 @@ const Header = ({ currentUser }) => {
   return (
     <div className='app__header'>
       <Modal active={modalActive} setActive={setModalActive} />
-      <div className='header' onKeyDown={onHandleKeyPress} tabIndex='0'>
+      <div
+        className='header flex-column'
+        onKeyDown={onHandleKeyPress}
+        tabIndex='0'
+      >
         <div className='header__sidebar'>
           <div className='header__sidebar-twitter-logo'>
             <Link to='/home'>
@@ -29,25 +33,51 @@ const Header = ({ currentUser }) => {
           <div className='header__sidebar-menu-items'>
             <ul className='nav flex-column'>
               <li className='nav-item'>
-                <Link className='nav-link' to='/home'>
-                  <i className='bi bi-house'> Главная</i>
-                </Link>
+                <div>
+                  <NavLink
+                    className='nav-link'
+                    to='/home'
+                    exact
+                    activeClassName='nav-link-active'
+                  >
+                    <i className='bi bi-house'>{` `}</i>
+                    Главная
+                  </NavLink>
+                </div>
               </li>
 
               <li className='nav-item'>
-                <Link className='nav-link' to='/notifications'>
-                  <i className='bi bi-bell'> Уведомления</i>
-                </Link>
+                <NavLink
+                  className='nav-link'
+                  to='/notifications'
+                  exact
+                  activeClassName='nav-link-active'
+                >
+                  <i className='bi bi-bell'>{` `}</i>
+                  Уведомления
+                </NavLink>
+              </li>
+              <li className='nav-item '>
+                <NavLink
+                  className='nav-link'
+                  to='/messages'
+                  exact
+                  activeClassName='nav-link-active'
+                >
+                  <i className='bi bi-envelope'>{` `}</i>
+                  Сообщения
+                </NavLink>
               </li>
               <li className='nav-item'>
-                <Link className='nav-link' to='/messages'>
-                  <i className='bi bi-envelope'> Сообщения</i>
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/profile'>
-                  <i className='bi bi-person'> Профиль</i>
-                </Link>
+                <NavLink
+                  className='nav-link'
+                  to='/profile'
+                  exact
+                  activeClassName='nav-link-active'
+                >
+                  <i className='bi bi-person'>{` `}</i>
+                  Профиль
+                </NavLink>
               </li>
             </ul>
           </div>

@@ -17,7 +17,6 @@ const uploadAvatarController = async (req, res) => {
         id: newUser._id,
         regDate: newUser.registrationDate,
         avatar: newUser.avatar,
-        tweets: newUser.tweets,
       },
       config.get('jwtSecretKey')
     );

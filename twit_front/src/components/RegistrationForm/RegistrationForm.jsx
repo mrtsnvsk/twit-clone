@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/authAction';
+import {
+  registerUser,
+  onRegError,
+  onSuccessReg,
+} from '../../redux/actions/authAction';
 import * as yup from 'yup';
 import { Field, Form, ErrorMessage, Formik } from 'formik';
 import ErrorBundry from '../ErrorBundry';
@@ -147,18 +151,18 @@ const RegistrationForm = ({
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ regError, successReg }) => {
   return {
-    regError: state.regError,
-    successReg: state.successReg,
+    regError,
+    successReg,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerUser: (data) => dispatch(action.registerUser(data)),
-    onRegError: (error) => dispatch(action.onRegError(error)),
-    onSuccessReg: (message) => dispatch(action.onSuccessReg(message)),
+    registerUser: (data) => dispatch(registerUser(data)),
+    onRegError: (error) => dispatch(onRegError(error)),
+    onSuccessReg: (message) => dispatch(onSuccessReg(message)),
   };
 };
 

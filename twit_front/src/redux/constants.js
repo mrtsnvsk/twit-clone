@@ -9,3 +9,4 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SUCCESS_REG = 'SUCCESS_REG';
 export const CHECK_AUTH = 'CHECK_AUTH';
 export const GET_CUR_TWEET = 'GET_CUR_TWEET';
+export const GET_USER_PROFILE = 'GET_USER_PROFILE';

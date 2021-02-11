@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentTweet: action.payload,
       };
+    case constant.GET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
     case constant.ADD_NEW_TWEET:
       return {
         ...state,

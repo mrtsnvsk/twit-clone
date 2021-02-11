@@ -31,7 +31,7 @@ const App = ({
           <Header />
           <Switch>
             <Route path='/home' component={Main} />
-            <Route path='/profile' component={Profile} />
+            <Route path='/profile/:login' component={Profile} />
             <Route path='/tweets/:id' component={CurrentTweet} />
           </Switch>
           <Sidebar />

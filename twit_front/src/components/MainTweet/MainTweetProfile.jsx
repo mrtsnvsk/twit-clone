@@ -1,22 +1,26 @@
 import MainTweetHelper from './MainTweetHelper';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/twitterAction';
+import {
+  deleteTweet,
+  likeTweet,
+  unlikeTweet,
+} from '../../redux/actions/twitterAction';
 
 const MainTweetProfile = ({
-  currentUser,
+  userProfile,
   deleteTweet,
   likeTweet,
   unlikeTweet,
   allTweets,
 }) => {
   const tweets = allTweets.filter((el) => {
-    return el.userId === currentUser.id;
+    return el.login === userProfile.login;
   });
 
   return (
     <MainTweetHelper
       data={tweets}
-      currentUser={currentUser}
+      currentUser={userProfile}
       deleteTweet={deleteTweet}
       likeTweet={likeTweet}
       unlikeTweet={unlikeTweet}
@@ -24,21 +28,19 @@ const MainTweetProfile = ({
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ userProfile, allTweets }) => {
   return {
-    currentUser: state.currentUser,
-    allTweets: state.allTweets,
+    allTweets,
+    userProfile,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteTweet: (userId, tweetId) =>
-      dispatch(action.deleteTweet(userId, tweetId)),
-    likeTweet: (tweetId, likedUser) =>
-      dispatch(action.likeTweet(tweetId, likedUser)),
+    deleteTweet: (userId, tweetId) => dispatch(deleteTweet(userId, tweetId)),
+    likeTweet: (tweetId, likedUser) => dispatch(likeTweet(tweetId, likedUser)),
     unlikeTweet: (tweetId, likedUser) =>
-      dispatch(action.unlikeTweet(tweetId, likedUser)),
+      dispatch(unlikeTweet(tweetId, likedUser)),
   };
 };
 

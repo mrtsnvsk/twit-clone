@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/authAction';
+import { onLoginError, loginUser } from '../../redux/actions/authAction';
 import * as yup from 'yup';
 import { Field, Form, ErrorMessage, Formik } from 'formik';
 import RegistrationForm from '../RegistrationForm';
@@ -91,16 +91,16 @@ const LoginForm = ({ loginUser, loginError, onLoginError }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ loginError }) => {
   return {
-    loginError: state.loginError,
+    loginError,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (data) => dispatch(action.loginUser(data)),
-    onLoginError: (error) => dispatch(action.onLoginError(error)),
+    loginUser: (data) => dispatch(loginUser(data)),
+    onLoginError: (error) => dispatch(onLoginError(error)),
   };
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/authAction';
+import { logoutUser } from '../../redux/actions/authAction';
 import './HeaderBotPopup.scss';
 
 const HeaderBotPopup = ({ logoutUser, login, name, currentUser }) => {
@@ -29,15 +29,15 @@ const HeaderBotPopup = ({ logoutUser, login, name, currentUser }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
-    currentUser: state.currentUser,
+    currentUser,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logoutUser: () => dispatch(action.logoutUser()),
+    logoutUser: () => dispatch(logoutUser()),
   };
 };
 

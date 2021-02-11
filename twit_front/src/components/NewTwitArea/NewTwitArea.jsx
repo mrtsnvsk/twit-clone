@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/twitterAction';
+import { addNewTweet } from '../../redux/actions/twitterAction';
 import './NewTwitArea.scss';
 
-const NewTwitArea = ({ currentUser, addNewTweet, isActive }) => {
+const NewTwitArea = ({ currentUser, addNewTweet }) => {
   const [newTweet, setNewTweet] = useState();
 
   const sentData = (e) => {
@@ -20,7 +20,7 @@ const NewTwitArea = ({ currentUser, addNewTweet, isActive }) => {
       userId: currentUser.id,
       tweetId: Date.now(),
     });
-    e.target.reset();
+    setNewTweet('');
   };
 
   return (
@@ -36,6 +36,7 @@ const NewTwitArea = ({ currentUser, addNewTweet, isActive }) => {
         <div className='form-floating new-twit-area__new-twit-input'>
           <textarea
             onChange={(e) => setNewTweet(e.target.value)}
+            value={newTweet}
             required={true}
             placeholder='Что нового?'
             className='form-control-label new-twit-area__new-twit-label'
@@ -61,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewTweet: (tweet) => dispatch(action.addNewTweet(tweet)),
+    addNewTweet: (tweet) => dispatch(addNewTweet(tweet)),
   };
 };
 

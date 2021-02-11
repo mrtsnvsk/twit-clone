@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import * as action from '../../redux/actions/twitterAction';
+import { newReply } from '../../redux/actions/twitterAction';
+import { tweetAgoTime } from '../../utils/tweetAgoTime';
 import './NewReplyArea.scss';
 
 const NewReplyArea = ({
@@ -12,21 +12,6 @@ const NewReplyArea = ({
   newReply,
 }) => {
   const [text, setText] = useState();
-
-  const tweetAgoTime = (start, end) => {
-    let a = moment(end);
-    let b = moment(start);
-    let date = b.diff(a, 'minutes');
-    if (date >= 60 && date >= 1440) {
-      return `${Math.floor(date / 1440)}d ago`;
-    } else if (date >= 60) {
-      return `${Math.floor(date / 60)}h ago`;
-    } else if (date < 1) {
-      return 'now';
-    } else {
-      return `${date}m ago`;
-    }
-  };
 
   const onHandlerSubmit = (e) => {
     e.preventDefault();
@@ -139,16 +124,16 @@ const NewReplyArea = ({
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentUser, currentTweet }) => {
   return {
-    currentUser: state.currentUser,
-    currentTweet: state.currentTweet,
+    currentUser,
+    currentTweet,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    newReply: (reply) => dispatch(action.newReply(reply)),
+    newReply: (reply) => dispatch(newReply(reply)),
   };
 };
 

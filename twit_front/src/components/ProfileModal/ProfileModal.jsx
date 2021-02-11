@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions/twitterAction';
+import { getAvatar } from '../../redux/actions/twitterAction';
 import './ProfileModal.scss';
 
 const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
   const { id, avatar } = currentUser;
-  // const [file, setFile] = useState();
+  const [file, setFile] = useState();
 
-  // function handleUserImage(e) {
-  //   e.preventDefault();
+  function handleUserImage(e) {
+    e.preventDefault();
 
-  //   if (file) {
-  //     const formdata = new FormData();
-  //     formdata.append('photo', file);
-  //     console.log('formdata', ...formdata);
+    if (file) {
+      const formdata = new FormData();
+      formdata.append('photo', file);
+      formdata.append('id', id);
+      getAvatar(file);
+      // console.log('formdata', ...formdata);
 
-  //     for (let pair of formdata.entries()) {
-  //       console.log('kek', pair[1]);
+      // for (let pair of formdata.entries()) {
+      //   console.log('kek', pair);
 
-  //       getAvatar(pair[1]);
-  //     }
-  //   }
-  // }
+      //   getAvatar(pair[1]);
+      // }
+    }
+  }
 
   return (
     <form
-      // encType='multipart/form-data'
-      // onSubmit={(e) => handleUserImage(e)}
+      encType='multipart/form-data'
+      onSubmit={(e) => handleUserImage(e)}
       className='profile-modal'
       hidden={active}
       onClick={() => setActive(true)}
@@ -58,8 +60,8 @@ const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
                 type='file'
                 id='upload'
                 hidden
-                // onChange={(e) => setFile(e.target.files[0])}
-                onChange={(e) => getAvatar(id, e.target.files[0].name)}
+                onChange={(e) => setFile(e.target.files[0])}
+                // onChange={(e) => getAvatar(id, e.target.files[0].name)}
               />
               <label htmlFor='upload'>
                 <img
@@ -107,15 +109,15 @@ const ProfileModal = ({ currentUser, getAvatar, active, setActive }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
-    currentUser: state.currentUser,
+    currentUser,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAvatar: (id, file) => dispatch(action.getAvatar(id, file)),
+    getAvatar: (id, file) => dispatch(getAvatar(id, file)),
   };
 };
 

@@ -1,5 +1,4 @@
 import { getResponse } from './getResponse';
-import { authUser } from './authUserAction';
 import {
   addTweetReq,
   deleteTweetReq,
@@ -9,14 +8,24 @@ import {
   unlikeTweetReq,
   currentTweetReq,
   newReplyReq,
+  userProfileReq,
 } from '../../api/tweetReq';
 import * as constant from '../constants';
 
-export const getAvatar = (file, id) => {
+// export const getAvatar = (file, id) => {
+//   return async (dispatch) => {
+//     const response = await getAvatarReq(file, id);
+//     const currentUser = getResponse(response.data.token);
+//     dispatch(authUser(currentUser));
+//   };
+// };
+
+export const getAvatar = (data) => {
   return async (dispatch) => {
-    const response = await getAvatarReq(file, id);
+    const response = await getAvatarReq(data);
+    console.log('action', data);
     const currentUser = getResponse(response.data.token);
-    dispatch(authUser(currentUser));
+    // dispatch(authUser(currentUser));
   };
 };
 
@@ -82,6 +91,16 @@ export const newReply = (reply) => {
     dispatch({
       type: constant.GET_ALL_TWEETS,
       payload: tweets,
+    });
+  };
+};
+
+export const getUserProfile = (login) => {
+  return async (dispatch) => {
+    const response = await userProfileReq(login);
+    dispatch({
+      type: constant.GET_USER_PROFILE,
+      payload: response.data,
     });
   };
 };

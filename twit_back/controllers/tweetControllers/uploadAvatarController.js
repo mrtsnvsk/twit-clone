@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 
 const uploadAvatarController = async (req, res) => {
+  console.log('req', req.file);
   try {
     const { id, avatar } = req.body;
 

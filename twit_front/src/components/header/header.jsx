@@ -71,7 +71,7 @@ const Header = ({ currentUser }) => {
               <li className='nav-item'>
                 <NavLink
                   className='nav-link'
-                  to='/profile'
+                  to={`/profile/${currentUser.login}`}
                   exact
                   activeClassName='nav-link-active'
                 >
@@ -117,9 +117,9 @@ const Header = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
-    currentUser: state.currentUser,
+    currentUser,
   };
 };
 

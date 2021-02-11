@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import * as action from '../../redux/actions/twitterAction';
+import { useParams, Link } from 'react-router-dom';
+import {
+  getCurrentTweet,
+  getUserProfile,
+} from '../../redux/actions/twitterAction';
 import { connect } from 'react-redux';
 import NewReplyArea from '../NewReplyArea';
 import Quote from './Quote';
@@ -27,10 +30,13 @@ const CurrentTweet = ({ getCurrentTweet, currentTweet }) => {
                 {/* // header */}
                 <div className='replyes__tweet-header d-flex'>
                   <div className='replyes__tweet-header-avatar'>
-                    <img
-                      alt='avatar'
-                      src={`http://localhost:8080/static/${currentTweet.avatar}`}
-                    />
+                    <Link to={`/profile/${currentTweet.login}`}>
+                      <img
+                        onClick={() => console.log(123)}
+                        alt='avatar'
+                        src={`http://localhost:8080/static/${currentTweet.avatar}`}
+                      />
+                    </Link>
                   </div>
                   <div className='replyes__tweet-header-data'>
                     <div className='replyes__tweet-header-data-name'>
@@ -92,15 +98,16 @@ const CurrentTweet = ({ getCurrentTweet, currentTweet }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentTweet }) => {
   return {
-    currentTweet: state.currentTweet,
+    currentTweet,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentTweet: (id) => dispatch(action.getCurrentTweet(id)),
+    getCurrentTweet: (id) => dispatch(getCurrentTweet(id)),
+    getUserProfile: (login) => dispatch(getUserProfile(login)),
   };
 };
 

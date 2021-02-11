@@ -1,8 +1,6 @@
 const multer = require('multer');
 
 const imageFilter = (req, file, cb) => {
-  console.log('check', file);
-  console.log('req', req);
   if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
     cb({ error: 'Only image files are allowed' }, false);
   }
@@ -20,4 +18,5 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage, fileFilter: imageFilter });
+
 module.exports = upload.single('avatar');

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addNewTweet } from '../../redux/actions/twitterAction';
+import { useHistory } from 'react-router-dom';
 import './NewTwitArea.scss';
 
 const NewTwitArea = ({ currentUser, addNewTweet }) => {
+  const history = useHistory();
   const [newTweet, setNewTweet] = useState();
+
+  const { login, avatar } = currentUser;
 
   const sentData = (e) => {
     e.preventDefault();
@@ -29,7 +33,8 @@ const NewTwitArea = ({ currentUser, addNewTweet }) => {
       <div className='new-twit-area'>
         <div className='new-twit-area__user-avatar'>
           <img
-            src={`http://localhost:8080/static/${currentUser.avatar}`}
+            onClick={() => history.push(`/profile/${login}`)}
+            src={`http://localhost:8080/static/${avatar}`}
             alt='user logo'
           />
         </div>

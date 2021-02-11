@@ -2,7 +2,6 @@ const Tweet = require('../../models/Tweet');
 
 const likeTweetController = async (req, res) => {
   try {
-    console.log('like', req.body);
     const { tweetId, likedUser } = req.body;
 
     let currentUser = await Tweet.findOne({ tweetId });

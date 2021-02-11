@@ -1,6 +1,5 @@
 @import '../styles.scss';
 
-
 .replyes__container {
   border-bottom: $borderLine;
   height: 100vh;
@@ -120,6 +119,12 @@
       .replyes__tweet-action
         .replyes__tweeet-like:hover
         .replyes__tweeet-icon-like {
+        color: $likeColor;
+      }
+
+      .replyes__tweet-action
+        .replyes__tweeet-like
+        .replyes__tweeet-icon-like-active {
         color: $likeColor;
       }
       // share

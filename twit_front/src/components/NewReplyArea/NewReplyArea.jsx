@@ -5,8 +5,8 @@ import { tweetAgoTime } from '../../utils/tweetAgoTime';
 import './NewReplyArea.scss';
 
 const NewReplyArea = ({
-  currentUser,
   currentTweet,
+  currentUser,
   active,
   setActive,
   newReply,
@@ -124,10 +124,9 @@ const NewReplyArea = ({
   );
 };
 
-const mapStateToProps = ({ currentUser, currentTweet }) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
     currentUser,
-    currentTweet,
   };
 };
 

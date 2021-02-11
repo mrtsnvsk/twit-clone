@@ -1,4 +1,3 @@
-import { getResponse } from './getResponse';
 import {
   addTweetReq,
   deleteTweetReq,
@@ -10,6 +9,7 @@ import {
   newReplyReq,
   userProfileReq,
 } from '../../api/tweetReq';
+import { onLikeTweet } from './actionUtils';
 import * as constant from '../constants';
 
 // export const getAvatar = (file, id) => {
@@ -24,7 +24,7 @@ export const getAvatar = (data) => {
   return async (dispatch) => {
     const response = await getAvatarReq(data);
     console.log('action', data);
-    const currentUser = getResponse(response.data.token);
+    // const currentUser = getResponse(response.data.token);
     // dispatch(authUser(currentUser));
   };
 };
@@ -50,29 +50,23 @@ export const getCurrentTweet = (id) => {
 };
 
 export const addNewTweet = (tweet) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     await addTweetReq(tweet);
-    const oldTweets = getState();
-    let allTweets = [...oldTweets.allTweets, tweet];
-    allTweets.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
     dispatch({
       type: constant.ADD_NEW_TWEET,
-      payload: allTweets,
+      payload: tweet,
     });
+    // dispatch(getAllTweets());
   };
 };
 
 export const newReply = (reply) => {
   return async (dispatch, getState) => {
     const response = await newReplyReq(reply);
-    let currentTweet = getState().currentTweet;
+
+    let currentTweet = reply;
 
     currentTweet.replyes.push(response.data);
-
-    dispatch({
-      type: constant.GET_CUR_TWEET,
-      payload: currentTweet,
-    });
 
     const allTweets = getState().allTweets;
     const before = allTweets.filter(
@@ -113,15 +107,23 @@ export const deleteTweet = (userId, tweetId) => {
 };
 
 export const likeTweet = (tweetId, likedUser) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     await likeTweetReq(tweetId, likedUser);
-    dispatch(getAllTweets());
+
+    dispatch({
+      type: constant.GET_ALL_TWEETS,
+      payload: onLikeTweet(tweetId, likedUser, getState()),
+    });
   };
 };
 
 export const unlikeTweet = (tweetId, likedUser) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     await unlikeTweetReq(tweetId, likedUser);
-    dispatch(getAllTweets());
+
+    dispatch({
+      type: constant.GET_ALL_TWEETS,
+      payload: onLikeTweet(tweetId, likedUser, getState()),
+    });
   };
 };

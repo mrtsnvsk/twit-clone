@@ -1,6 +1,6 @@
 import * as constant from '../constants';
 import { registerUserReq, loginUserReq } from '../../api/auth';
-import { getResponse } from './getResponse';
+import { getResponse } from './actionUtils';
 import { authUser } from './authUserAction';
 
 export const registerUser = (data) => {

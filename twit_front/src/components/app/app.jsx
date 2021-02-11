@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar';
 import LoginForm from '../LoginForm';
 import * as action from '../../redux/actions/authAction';
 import * as tweetAction from '../../redux/actions/twitterAction';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Profile from '../Profile';
 import CurrentTweet from '../CurrentTweet/CurrentTweet';
@@ -37,7 +37,7 @@ const App = ({
           <Sidebar />
         </div>
       )}
-      {!isAuth && <Redirect to='/login' />}
+      {/* {!isAuth && <Redirect to='/login' />} */}
     </>
   );
 };

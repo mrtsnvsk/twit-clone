@@ -9,7 +9,6 @@ export const currentTweetReq = (id) => {
 };
 
 export const deleteTweetReq = (userId, tweetId) => {
-  console.log(userId, tweetId);
   return axios.post('/api/deleteTweet', { userId, tweetId });
 };
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const Quote = () => {
-  const currentTweet = useSelector((state) => state.currentTweet);
-
-  return currentTweet.replyes.map((el) => {
+const Quote = ({ currentTweet }) => {
+  return currentTweet.replyes.map((el, idx) => {
     return (
-      <div style={{ border: '1px solid grey', margin: 10 }} className='quote'>
+      <div
+        key={idx}
+        style={{ border: '1px solid grey', margin: 10 }}
+        className='quote'
+      >
         <div className='quote__container d-flex'>
           <div className='quote__user-image'>
             <img

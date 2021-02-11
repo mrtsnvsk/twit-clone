@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
     case constant.ADD_NEW_TWEET:
       return {
         ...state,
-        allTweets: action.payload,
+        allTweets: [action.payload, ...state.allTweets],
       };
     case constant.SUCCESS_REG:
       return {
